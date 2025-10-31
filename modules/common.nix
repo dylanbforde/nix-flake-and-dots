@@ -109,7 +109,7 @@
     ripgrep
     fd
     gemini-cli
-    uv
+    devenv
   ];
 
   services.tailscale.enable = true;
