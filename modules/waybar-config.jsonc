@@ -1,0 +1,60 @@
+
+{
+  "layer": "top",
+  "position": "top",
+
+  // left side: Hyprland workspaces
+  "modules-left": ["hyprland/workspaces"],
+
+  // center empty for now
+  "modules-center": [],
+
+  // right side: audio, network, battery, clock, tray
+  "modules-right": [
+    "pulseaudio",
+    "network",
+    "battery",
+    "clock",
+    "tray"
+  ],
+
+  "hyprland/workspaces": {
+    "on-click": "hyprctl dispatch workspace {id}",
+    "format": "{name}",
+    "active-only": false
+  },
+
+  "pulseaudio": {
+    "format": " {volume}%",
+    "format-muted": " muted",
+    "scroll-step": 2,
+    "on-click": "pavucontrol"
+  },
+
+  "network": {
+    "format-wifi": " {essid} {signalStrength}%",
+    "format-ethernet": "󰈀 {ifname}",
+    "format-disconnected": "󰖪 offline",
+    "tooltip": true,
+    "on-click": "nm-connection-editor"
+  },
+
+  "battery": {
+    "format": "{capacity}% ",
+    "format-charging": "{capacity}% ",
+    "format-full": "100% ",
+    "states": {
+      "warning": 30,
+      "critical": 15
+    }
+  },
+
+  "clock": {
+    "format": "{:%a %b %d  %H:%M}"
+  },
+
+  "tray": {
+    "icon-size": 18,
+    "spacing": 8
+  }
+}
