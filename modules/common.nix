@@ -123,6 +123,9 @@
   services.tumbler.enable = true;
   programs.thunar.enable = true;
 
+  programs.direnv.enable = true;
+  programs.direnv.nix-direnv.enable = true;
+
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
   };
