@@ -57,6 +57,7 @@
   xdg.configFile."waybar/config".source = ./waybar-config.jsonc;
   xdg.configFile."waybar/style.css".source = ./waybar-style.css;
   xdg.configFile."hypr/hyprland.conf".source = ./hyprland.conf;
+  xdg.configFile."hypr/hyperApps.conf".source = ./hyperApps.conf;
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
