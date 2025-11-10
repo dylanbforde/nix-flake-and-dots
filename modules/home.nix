@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   # Home Manager needs a bit of information about you and the paths it should
@@ -38,7 +38,7 @@
     helix
     brightnessctl
     pulseaudio
-    cursor.packages.x86_64-linux.cursor
+    inputs.cursor.packages.x86_64-linux.cursor
      ];
 
   programs.bash = {

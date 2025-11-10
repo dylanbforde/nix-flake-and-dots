@@ -12,7 +12,7 @@
 
   inputs.cursor.url = "github:dylanbforde/nix-ide-flake";
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs: {
+  outputs = { self, nixpkgs, home-manager, cursor, ... }@inputs: {
     # NixOS Configs
     nixosConfigurations = {
       "nixos-laptop" = nixpkgs.lib.nixosSystem {
