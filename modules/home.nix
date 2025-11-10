@@ -36,6 +36,9 @@
     networkmanagerapplet
     git
     helix
+    brightnessctl
+    pulseaudio
+    cursor.packages.x86_64-linux.cursor
      ];
 
   programs.bash = {

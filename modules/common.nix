@@ -116,6 +116,7 @@
     fd
     gemini-cli
     devenv
+    blueman
   ];
 
   services.tailscale.enable = true;
@@ -134,4 +135,10 @@
     nerd-fonts.symbols-only
     font-awesome
   ];
+
+  ################################
+  # Bluetooth
+  ################################
+  hardware.bluetooth.enable = true;
+  services.blueman.enable = true;
 }
