@@ -10,9 +10,7 @@
     };
   };
 
-  inputs.cursor.url = "github:dylanbforde/nix-ide-flake";
-
-  outputs = { self, nixpkgs, home-manager, cursor, ... }@inputs: {
+  outputs = { self, nixpkgs, home-manager, ... }@inputs: {
     # NixOS Configs
     nixosConfigurations = {
       "nixos-laptop" = nixpkgs.lib.nixosSystem {

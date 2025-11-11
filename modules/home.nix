@@ -26,6 +26,7 @@
     ripgrep
     fd
     spotify
+    tmux
     btop
     docker
     kitty
@@ -38,7 +39,6 @@
     helix
     brightnessctl
     pulseaudio
-    inputs.cursor.packages.x86_64-linux.cursor
      ];
 
   programs.bash = {

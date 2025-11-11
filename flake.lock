@@ -1,23 +1,5 @@
 {
   "nodes": {
-    "cursor": {
-      "inputs": {
-        "nixpkgs": "nixpkgs"
-      },
-      "locked": {
-        "lastModified": 1762605461,
-        "narHash": "sha256-HXq6q3TsHPFUp0sBszjfq+KPRFjDYUr22ou0uDop8fQ=",
-        "owner": "dylanbforde",
-        "repo": "nix-ide-flake",
-        "rev": "a6b4ed2bf89c406d7a0b428d6fab6ad83722467c",
-        "type": "github"
-      },
-      "original": {
-        "owner": "dylanbforde",
-        "repo": "nix-ide-flake",
-        "type": "github"
-      }
-    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -41,22 +23,6 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1762363567,
-        "narHash": "sha256-YRqMDEtSMbitIMj+JLpheSz0pwEr0Rmy5mC7myl17xs=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "ae814fd3904b621d8ab97418f1d0f2eb0d3716f4",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "nixos-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs_2": {
-      "locked": {
         "lastModified": 1761597516,
         "narHash": "sha256-wxX7u6D2rpkJLWkZ2E932SIvDJW8+ON/0Yy8+a5vsDU=",
         "owner": "NixOS",
@@ -73,9 +39,8 @@
     },
     "root": {
       "inputs": {
-        "cursor": "cursor",
         "home-manager": "home-manager",
-        "nixpkgs": "nixpkgs_2"
+        "nixpkgs": "nixpkgs"
       }
     }
   },
