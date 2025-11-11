@@ -116,6 +116,9 @@
     fd
     gemini-cli
     devenv
+    grim # For screenshots
+    slurp # For selecting screenshot region
+    swaylock # For locking the screen
     blueman
   ];
 
