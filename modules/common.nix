@@ -1,9 +1,11 @@
 # /home/dylan/nixos-config/modules/common.nix
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+
+  nixpkgs.overlays = [ inputs.antigravity-nix.overlays.default ];
 
   nix = {
     settings = {
@@ -94,6 +96,7 @@
   };
 
   environment.systemPackages = with pkgs; [
+    google-antigravity
     helix
     kitty
     brave
