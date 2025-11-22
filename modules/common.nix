@@ -123,6 +123,7 @@
     slurp # For selecting screenshot region
     swaylock # For locking the screen
     blueman
+    discord
   ];
 
   services.tailscale.enable = true;
