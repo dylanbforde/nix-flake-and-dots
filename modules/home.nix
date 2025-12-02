@@ -39,6 +39,7 @@
     helix
     brightnessctl
     pulseaudio
+    anki
      ];
 
   programs.bash = {
