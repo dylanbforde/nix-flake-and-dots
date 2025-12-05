@@ -40,6 +40,7 @@
     brightnessctl
     pulseaudio
     anki
+    calibre
      ];
 
   programs.bash = {
