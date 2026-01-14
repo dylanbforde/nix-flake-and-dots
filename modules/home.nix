@@ -41,6 +41,7 @@
     pulseaudio
     anki
     calibre
+    vlc
      ];
 
   programs.bash = {
@@ -104,4 +105,57 @@
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
+
+  programs.helix = {
+    enable = true;
+    settings = {
+      theme = "catppuccin_mocha";
+      editor = {
+        line-number = "relative";
+        mouse = false;
+        lsp.display-messages = true;
+      };
+    };
+    languages = {
+      language-server = {
+        rust-analyzer = {
+          command = "rust-analyzer";
+          config = {
+            checkOnSave = {
+              command = "clippy";
+            };
+          };
+        };
+        ruff = {
+          command = "ruff";
+          args = ["server", "--preview"];
+        };
+        ty = {
+          command = "ty";
+        };
+        nil = {
+          command = "nil";
+        };
+      };
+      language = [
+        {
+          name = "rust";
+          language-servers = [ "rust-analyzer" ];
+          auto-format = true;
+        },
+        {
+          name = "python";
+          language-servers = [ "ty", "ruff" ];
+          formatter = {
+            command = "ruff";
+            args = ["format", "-"];
+          };
+        },
+        {
+          name = "nix";
+          language-servers = [ "nil" ];
+        },
+      ];
+    };
+  };
 }
