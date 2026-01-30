@@ -54,7 +54,25 @@
        alias ls='eza --icons=auto --group-directories-first'
        alias ll='eza -la --icons=auto --group-directories-first'
       fi
-      
+
+      # Distrobox Helpers
+      db-cuda() {
+        local name="cuda-$(basename "$PWD")"
+        if ! distrobox list | grep -q "$name"; then
+          echo "Creating CUDA container: $name"
+          distrobox create -Y -n "$name" --image nvidia/cuda:12.4.1-devel-ubuntu22.04 --nvidia --home "$PWD"
+        fi
+        distrobox enter "$name"
+      }
+
+      db-ubuntu() {
+        local name="ubuntu-$(basename "$PWD")"
+        if ! distrobox list | grep -q "$name"; then
+          echo "Creating Ubuntu container: $name"
+          distrobox create -Y -n "$name" --image ubuntu:22.04 --home "$PWD"
+        fi
+        distrobox enter "$name"
+      }
       '';
   };
 
