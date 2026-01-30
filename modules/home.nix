@@ -42,7 +42,7 @@
     anki
     calibre
     vlc
-     ];
+  ];
 
   programs.bash = {
     enable = true;
@@ -126,13 +126,6 @@
             };
           };
         };
-        ruff = {
-          command = "ruff";
-          args = ["server", "--preview"];
-        };
-        ty = {
-          command = "ty";
-        };
         nil = {
           command = "nil";
         };
@@ -142,19 +135,15 @@
           name = "rust";
           language-servers = [ "rust-analyzer" ];
           auto-format = true;
-        },
+        }
         {
           name = "python";
-          language-servers = [ "ty", "ruff" ];
-          formatter = {
-            command = "ruff";
-            args = ["format", "-"];
-          };
-        },
+          language-servers = [ "ty" ];
+        }
         {
           name = "nix";
           language-servers = [ "nil" ];
-        },
+        }
       ];
     };
   };
