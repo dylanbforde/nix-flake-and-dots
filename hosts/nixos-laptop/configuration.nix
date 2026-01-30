@@ -9,7 +9,9 @@
     ../../modules/networking/default.nix
     ../../modules/programs/common.nix
     ../../modules/programs/dev.nix
+    ../../modules/programs/kitty/default.nix
     ../../modules/desktop/hyprland/default.nix
+    ../../modules/desktop/waybar/default.nix
   ];
 
   boot.loader.systemd-boot.enable = true;
