@@ -6,10 +6,22 @@
     "passthrough": false,
     "gtk-layer-shell": true,
     "height": 0,
-    "modules-left": ["hyprland/workspaces"],
-    "modules-center": ["clock"],
-    "modules-right": ["tray", "network", "pulseaudio", "battery"],
-
+    "modules-left": [
+        "hyprland/workspaces"
+    ],
+    "modules-center": [
+        "clock"
+    ],
+    "modules-right": [
+        "tray",
+        "cpu",
+        "memory",
+        "temperature",
+        "backlight",
+        "network",
+        "pulseaudio",
+        "battery"
+    ],
     "hyprland/window": {
         "format": "{}"
     },
@@ -26,6 +38,15 @@
         "format": " {:%H:%M   %e %b}",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
     },
+    "backlight": {
+        "device": "intel_backlight",
+        "format": "{icon} {percent}%",
+        "format-icons": [
+            "",
+            "",
+            ""
+        ]
+    },
     "battery": {
         "states": {
             "good": 95,
@@ -36,7 +57,13 @@
         "format-charging": " {capacity}%",
         "format-plugged": " {capacity}%",
         "format-alt": "{time} {icon}",
-        "format-icons": ["", "", "", "", ""]
+        "format-icons": [
+            "",
+            "",
+            "",
+            "",
+            ""
+        ]
     },
     "network": {
         "format-wifi": " {essid}",
@@ -57,7 +84,30 @@
             "phone": "",
             "portable": "",
             "car": "",
-            "default": ["", "", ""]
+            "default": [
+                "",
+                "",
+                ""
+            ]
         }
+    },
+    "cpu": {
+        "interval": 10,
+        "format": " {usage}%",
+        "max-length": 10
+    },
+    "memory": {
+        "interval": 30,
+        "format": " {}%",
+        "max-length": 10
+    },
+    "temperature": {
+        "critical-threshold": 80,
+        "format": "{icon} {temperatureC}°C",
+        "format-icons": [
+            "",
+            "",
+            ""
+        ]
     }
 }

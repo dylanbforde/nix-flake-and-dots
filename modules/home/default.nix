@@ -92,4 +92,58 @@
       ];
     };
   };
+  
+  # Starship Shell Prompt
+  programs.starship = {
+    enable = true;
+    enableBashIntegration = true;
+      format = "$directory$character";
+      right_format = "$all";
+      add_newline = false;
+      
+      character = {
+        success_symbol = "[](bold green)";
+        error_symbol = "[](bold red)";
+      };
+
+      directory = {
+        style = "bold lavender";
+        format = "[$path ]($style)";
+        truncation_length = 3;
+        truncation_symbol = "…/";
+      };
+      
+      git_branch = {
+        symbol = " ";
+        style = "bold purple";
+        format = "[$symbol$branch]($style) ";
+      };
+
+      git_status = {
+        format = "[$all_status$ahead_behind]($style) ";
+        style = "bold red";
+      };
+
+      package = {
+        symbol = " ";
+        style = "bold yellow";
+        format = "[$symbol$version]($style) ";
+      };
+
+      golang = {
+        symbol = " ";
+        style = "bold blue";
+      };
+
+      rust = {
+        symbol = " ";
+        style = "bold red";
+      };
+      
+      python = {
+        symbol = "🐍 ";
+        style = "bold yellow";
+      };
+    };
+  };
 }

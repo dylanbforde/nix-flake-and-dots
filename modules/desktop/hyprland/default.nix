@@ -19,7 +19,6 @@
   
   # Desktop/Hyprland specific packages
   environment.systemPackages = with pkgs; [
-    wofi
     hyprpaper
     networkmanagerapplet
     wl-clipboard

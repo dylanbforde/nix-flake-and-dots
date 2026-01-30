@@ -12,6 +12,8 @@
     ../../modules/programs/kitty/default.nix
     ../../modules/desktop/hyprland/default.nix
     ../../modules/desktop/waybar/default.nix
+    ../../modules/desktop/wofi/default.nix
+    ../../modules/programs/fastfetch/default.nix
   ];
 
   boot.loader.systemd-boot.enable = true;

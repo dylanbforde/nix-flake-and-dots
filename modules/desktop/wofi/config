@@ -1,0 +1,9 @@
+mode=drun
+show=drun
+width=600
+height=400
+offset=0
+lines=10
+insensitive=true
+allow_images=false
+prompt=Search Apps...

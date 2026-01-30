@@ -1,4 +1,4 @@
-/* Catppuccin Mocha + Sharp Style */
+/* Catppuccin Mocha + Candy Bar Style */
 
 * {
     font-family: "JetBrainsMono Nerd Font", monospace;
@@ -16,13 +16,20 @@ window#waybar {
 }
 
 /* Modules (Sharp Pills) */
-.modules-left, .modules-center, .modules-right {
-    background: #1e1e2e;
-    border: 1px solid #11111b;
-    padding: 5px;
+.modules-left,
+.modules-center,
+.modules-right {
+    background: transparent;
+    border: 0;
     margin: 5px;
-    /* Rounding: 0 as requested */
-    border-radius: 0px; 
+}
+
+#workspaces {
+    background: #1e1e2e;
+    margin: 0 4px;
+    padding: 0 5px;
+    border-radius: 0px;
+    border: 1px solid #11111b;
 }
 
 #workspaces button {
@@ -33,7 +40,8 @@ window#waybar {
 }
 
 #workspaces button.active {
-    color: #cba6f7; /* Mauve */
+    color: #cba6f7;
+    /* Mauve */
 }
 
 #workspaces button.focused {
@@ -53,48 +61,79 @@ window#waybar {
 #backlight,
 #network,
 #pulseaudio,
-#wireplumber,
-#custom-media,
-#tray,
-#mode,
-#idle_inhibitor,
-#mpd {
+#tray {
     padding: 0 10px;
-    color: #cdd6f4;
+    margin: 0 4px;
+    color: #1e1e2e;
+    /* Black text for candy feel */
     border-radius: 0px;
-    background: transparent;
-}
-
-/* Accents */
-#clock {
-    color: #cba6f7;
     font-weight: bold;
 }
 
+#clock {
+    background: #cba6f7;
+    /* Mauve */
+    color: #11111b;
+}
+
 #battery {
-    color: #a6e3a1; /* Green */
+    background: #a6e3a1;
+    /* Green */
+    color: #11111b;
 }
 
 #battery.charging {
-    color: #ccd0da;
+    background: #94e2d5;
+    /* Teal */
 }
 
 #battery.warning {
-    color: #f9e2af; /* Yellow */
+    background: #f9e2af;
+    /* Yellow */
 }
 
 #battery.critical {
-    color: #f38ba8; /* Red */
+    background: #f38ba8;
+    /* Red */
 }
 
 #network {
-    color: #89b4fa; /* Blue */
+    background: #89b4fa;
+    /* Blue */
+    color: #11111b;
 }
 
 #pulseaudio {
-    color: #f5c2e7; /* Pink */
+    background: #f5c2e7;
+    /* Pink */
+    color: #11111b;
+}
+
+#cpu {
+    background: #fab387;
+    /* Peach */
+    color: #11111b;
+}
+
+#memory {
+    background: #f9e2af;
+    /* Yellow */
+    color: #11111b;
+}
+
+#temperature {
+    background: #eba0ac;
+    /* Maroon */
+    color: #11111b;
+}
+
+#backlight {
+    background: #94e2d5;
+    /* Teal */
+    color: #11111b;
 }
 
 #tray {
-    background-color: #1e1e2e;
+    background: #1e1e2e;
+    color: #cdd6f4;
 }

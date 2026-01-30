@@ -16,8 +16,8 @@
     fd
     discord
     vlc
-    starship
-    fastfetch
+    discord
+    vlc
   ];
 
   # Thunar
