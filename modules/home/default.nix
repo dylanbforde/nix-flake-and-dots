@@ -97,6 +97,7 @@
   programs.starship = {
     enable = true;
     enableBashIntegration = true;
+    settings = {
       format = "$directory$character";
       right_format = "$all";
       add_newline = false;
