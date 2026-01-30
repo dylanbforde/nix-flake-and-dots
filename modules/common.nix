@@ -117,6 +117,7 @@
     eza
     ripgrep
     fd
+    distrobox
     gemini-cli
     devenv
     grim # For screenshots
