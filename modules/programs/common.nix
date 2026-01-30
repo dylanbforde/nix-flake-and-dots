@@ -16,8 +16,12 @@
     fd
     discord
     vlc
-    discord
-    vlc
+    pavucontrol
+    imv
+    zathura
+    yazi
+    unzip
+    jq
   ];
 
   # Thunar
