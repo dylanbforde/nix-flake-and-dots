@@ -1,49 +1,100 @@
-/* Tokyo Night theme for Waybar */
+/* Catppuccin Mocha + Sharp Style */
+
 * {
-  font-family: "JetBrainsMono Nerd Font", monospace;
-  font-size: 12pt;
-  min-height: 0;
+    font-family: "JetBrainsMono Nerd Font", monospace;
+    font-size: 13px;
+    min-height: 0;
 }
 
 window#waybar {
-  background: rgba(26, 27, 38, 0.8);
-  border-bottom: 2px solid #3d59a1;
-  color: #a9b1d6;
+    background: transparent;
+    color: #cdd6f4;
+}
+
+#waybar {
+    background: transparent;
+}
+
+/* Modules (Sharp Pills) */
+.modules-left, .modules-center, .modules-right {
+    background: #1e1e2e;
+    border: 1px solid #11111b;
+    padding: 5px;
+    margin: 5px;
+    /* Rounding: 0 as requested */
+    border-radius: 0px; 
 }
 
 #workspaces button {
-  padding: 4px 8px;
-  margin: 4px;
-  border-radius: 6px;
-  border: none;
-  background: transparent;
-  color: #a9b1d6;
+    padding: 0 5px;
+    background: transparent;
+    color: #cdd6f4;
+    border-radius: 0px;
 }
 
 #workspaces button.active {
-  background: #3d59a1;
-  color: #1a1b26;
-  font-weight: bold;
+    color: #cba6f7; /* Mauve */
 }
 
-#pulseaudio,
-#network,
-#battery,
+#workspaces button.focused {
+    color: #cba6f7;
+}
+
+#workspaces button:hover {
+    background: #313244;
+}
+
 #clock,
-#tray {
-  padding: 0 10px;
-  margin: 4px 4px;
-  border-radius: 6px;
-  background: rgba(40, 42, 54, 0.7);
-  border: 1px solid #3d59a1;
-  color: #a9b1d6;
+#battery,
+#cpu,
+#memory,
+#disk,
+#temperature,
+#backlight,
+#network,
+#pulseaudio,
+#wireplumber,
+#custom-media,
+#tray,
+#mode,
+#idle_inhibitor,
+#mpd {
+    padding: 0 10px;
+    color: #cdd6f4;
+    border-radius: 0px;
+    background: transparent;
+}
+
+/* Accents */
+#clock {
+    color: #cba6f7;
+    font-weight: bold;
+}
+
+#battery {
+    color: #a6e3a1; /* Green */
+}
+
+#battery.charging {
+    color: #ccd0da;
 }
 
 #battery.warning {
-  color: #e0af68;
+    color: #f9e2af; /* Yellow */
 }
 
 #battery.critical {
-  color: #f7768e;
+    color: #f38ba8; /* Red */
 }
 
+#network {
+    color: #89b4fa; /* Blue */
+}
+
+#pulseaudio {
+    color: #f5c2e7; /* Pink */
+}
+
+#tray {
+    background-color: #1e1e2e;
+}

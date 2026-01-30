@@ -1,60 +1,63 @@
-
 {
-  "layer": "top",
-  "position": "top",
+    "layer": "top",
+    "position": "top",
+    "mod": "dock",
+    "exclusive": true,
+    "passthrough": false,
+    "gtk-layer-shell": true,
+    "height": 0,
+    "modules-left": ["hyprland/workspaces"],
+    "modules-center": ["clock"],
+    "modules-right": ["tray", "network", "pulseaudio", "battery"],
 
-  // left side: Hyprland workspaces
-  "modules-left": ["hyprland/workspaces"],
-
-  // center empty for now
-  "modules-center": [],
-
-  // right side: audio, network, battery, clock, tray
-  "modules-right": [
-    "pulseaudio",
-    "network",
-    "battery",
-    "clock",
-    "tray"
-  ],
-
-  "hyprland/workspaces": {
-    "on-click": "hyprctl dispatch workspace {id}",
-    "format": "{name}",
-    "active-only": false
-  },
-
-  "pulseaudio": {
-    "format": " {volume}%",
-    "format-muted": " muted",
-    "scroll-step": 2,
-    "on-click": "pavucontrol"
-  },
-
-  "network": {
-    "format-wifi": " {essid} {signalStrength}%",
-    "format-ethernet": "󰈀 {ifname}",
-    "format-disconnected": "󰖪 offline",
-    "tooltip": true,
-    "on-click": "nm-connection-editor"
-  },
-
-  "battery": {
-    "format": "{capacity}% ",
-    "format-charging": "{capacity}% ",
-    "format-full": "100% ",
-    "states": {
-      "warning": 30,
-      "critical": 15
+    "hyprland/window": {
+        "format": "{}"
+    },
+    "hyprland/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": true,
+        "on-click": "activate"
+    },
+    "tray": {
+        "icon-size": 13,
+        "spacing": 10
+    },
+    "clock": {
+        "format": " {:%H:%M   %e %b}",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+    },
+    "battery": {
+        "states": {
+            "good": 95,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon} {capacity}%",
+        "format-charging": " {capacity}%",
+        "format-plugged": " {capacity}%",
+        "format-alt": "{time} {icon}",
+        "format-icons": ["", "", "", "", ""]
+    },
+    "network": {
+        "format-wifi": " {essid}",
+        "format-ethernet": "{ipaddr}/{cidr} ",
+        "tooltip-format": "{ifname} via {gwaddr} ",
+        "format-linked": "{ifname} (No IP) ",
+        "format-disconnected": "Disconnected ⚠",
+        "format-alt": "{ifname}: {ipaddr}/{cidr}"
+    },
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-muted": "",
+        "on-click": "pavucontrol",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        }
     }
-  },
-
-  "clock": {
-    "format": "{:%a %b %d  %H:%M}"
-  },
-
-  "tray": {
-    "icon-size": 18,
-    "spacing": 8
-  }
 }

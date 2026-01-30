@@ -9,6 +9,15 @@
   # Enable Home Manager to manage itself
   programs.home-manager.enable = true;
 
+  # Cursor Theme
+  home.pointerCursor = {
+    name = "Bibata-Modern-Classic";
+    package = pkgs.bibata-cursors;
+    size = 24;
+    gtk.enable = true;
+    x11.enable = true;
+  };
+
   # Programs customized via Home Manager
   programs.bash = {
     enable = true;

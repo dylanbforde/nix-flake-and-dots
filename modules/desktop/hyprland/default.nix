@@ -35,6 +35,5 @@
   home-manager.users.dylan = {
     xdg.configFile."hypr/hyprpaper.conf".source = ./hyprpaper.conf;
     xdg.configFile."hypr/hyprland.conf".source = ./hyprland.conf;
-    xdg.configFile."hypr/hyperApps.conf".source = ./hyperApps.conf;
   };
 }
