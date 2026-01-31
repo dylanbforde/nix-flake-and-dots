@@ -1,0 +1,59 @@
+{
+  mocha = {
+    base = "#1e1e2e";
+    mantle = "#181825";
+    crust = "#11111b";
+    text = "#cdd6f4";
+    subtext0 = "#a6adc8";
+    subtext1 = "#bac2de";
+    surface0 = "#313244";
+    surface1 = "#45475a";
+    surface2 = "#585b70";
+    overlay0 = "#6c7086";
+    overlay1 = "#7f849c";
+    overlay2 = "#9399b2";
+    blue = "#89b4fa";
+    lavender = "#b4befe";
+    sapphire = "#74c7ec";
+    sky = "#89dceb";
+    teal = "#94e2d5";
+    green = "#a6e3a1";
+    yellow = "#f9e2af";
+    peach = "#fab387";
+    maroon = "#eba0ac";
+    red = "#f38ba8";
+    mauve = "#cba6f7";
+    pink = "#f5c2e7";
+    flamingo = "#f2cdcd";
+    rosewater = "#f5e0dc";
+  };
+  
+  oil_painting = {
+    base = "#2d2a2e"; # Dark earthy background
+    mantle = "#221f22";
+    crust = "#19181a";
+    text = "#e3e1e4";
+    subtext0 = "#b9b9b9";
+    subtext1 = "#a6a6a6";
+    surface0 = "#403e41";
+    surface1 = "#4d4d4d";
+    surface2 = "#595959";
+    overlay0 = "#727072";
+    overlay1 = "#8c8c8c";
+    overlay2 = "#a6a6a6";
+    blue = "#78dce8"; # Cyan/Sky
+    lavender = "#ab9df2"; # Purple
+    sapphire = "#78dce8";
+    sky = "#78dce8";
+    teal = "#a9dc76"; # Sage green
+    green = "#a9dc76";
+    yellow = "#ffd866"; # Gold
+    peach = "#ff6188"; # Rose
+    maroon = "#ff6188";
+    red = "#ff6188";
+    mauve = "#ab9df2";
+    pink = "#fc9867"; # Orange
+    flamingo = "#fc9867";
+    rosewater = "#f5e0dc";
+  };
+}
