@@ -89,10 +89,18 @@
             # Post-switch reloads
             echo "🔄 Refreshing applications..."
             hyprctl reload >/dev/null 2>&1
-            # Signal Kitty to reload config (if supported, otherwise it reloads on file change usually)
             pkill -USR1 kitty 2>/dev/null
-            # Cleanly restart Waybar to avoid duplicates
-            pkill waybar && sleep 0.5
+            
+            # Robust Waybar restart to prevent duplicates
+            killall -q waybar
+            # Wait for waybar to actually exit
+            for i in {1..10}; do
+              if ! pgrep -x waybar >/dev/null; then break; fi
+              sleep 0.1
+            done
+            # Force kill if still alive
+            killall -9 -q waybar
+            # Start fresh
             hyprctl dispatch exec waybar
             ;;
           wallpaper)
