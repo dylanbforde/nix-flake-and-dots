@@ -6,10 +6,10 @@
   ];
 
   # Home Manager Config
-  home-manager.users.dylan = {
+  home-manager.users.dylan = { config, ... }: {
     xdg.configFile."wofi/config".source = ./config;
     xdg.configFile."wofi/style.css".text = let
-      c = config.home-manager.users.dylan.theme.palette;
+      c = config.theme.palette;
     in ''
       /* Templated Wofi Style */
       @define-color base ${c.base};

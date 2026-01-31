@@ -30,16 +30,16 @@
   ];
 
   # Home Manager Config
-  home-manager.users.dylan = {
+  home-manager.users.dylan = { config, ... }: {
     xdg.configFile."hypr/hyprpaper.conf".text = let
-      wp = config.home-manager.users.dylan.theme.wallpaper;
+      wp = config.theme.wallpaper;
     in ''
       preload = ${wp}
       wallpaper = ,${wp}
     '';
     
     xdg.configFile."hypr/hyprland.conf".text = let
-      t = config.home-manager.users.dylan.theme;
+      t = config.theme;
       c = t.palette;
       # Strip # for hyprland rgb() wrapper
       strip = hex: pkgs.lib.strings.removePrefix "#" hex;

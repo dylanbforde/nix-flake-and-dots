@@ -6,10 +6,10 @@
   ];
 
   # Home Manager Config
-  home-manager.users.dylan = {
+  home-manager.users.dylan = { config, ... }: {
     xdg.configFile."waybar/config".source = ./config.jsonc;
     xdg.configFile."waybar/style.css".text = let
-      c = config.home-manager.users.dylan.theme.palette;
+      c = config.theme.palette;
     in ''
       /* Templated Candy Bar Style */
       * {

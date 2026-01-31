@@ -6,9 +6,9 @@
   ];
 
   # Home Manager Config
-  home-manager.users.dylan = {
+  home-manager.users.dylan = { config, ... }: {
     xdg.configFile."kitty/kitty.conf".text = let
-      c = config.home-manager.users.dylan.theme.palette;
+      c = config.theme.palette;
     in ''
       # Templated Kitty Config
       foreground              ${c.text}
