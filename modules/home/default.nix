@@ -64,26 +64,31 @@
         local cmd="$1"
         local wp_path="$HOME/wallpapers"
         
+        # Path to the base Home Manager profile
         local hm_base="$HOME/.local/state/nix/profiles/home-manager"
-        local main_activate="$hm_base/activate"
-        local spec_base="$hm_base/specialisation"
-        local active_file="$HOME/.theme_oil_active"
 
         case "$cmd" in
           palette)
-            if [ ! -f "$active_file" ]; then
-              if [ -d "$spec_base/oil-painting" ]; then
-                echo "🎨 Switching to Oil Painting palette..."
-                touch "$active_file"
-                "$spec_base/oil-painting/activate"
-              else
-                echo "❌ Specialisation 'oil-painting' not found!"
-                return 1
-              fi
+            # Find the true base and spec paths
+            local hm_real=$(realpath "$hm_base")
+            if [[ "$hm_real" == *"specialisation"* ]]; then
+              hm_real=$(realpath "$hm_real/../../")
+            fi
+            
+            local spec_activate="$hm_real/specialisation/oil-painting/activate"
+            local base_activate="$hm_real/activate"
+
+            # Check if we are currently in a specialisation profile
+            local active_profile=$(realpath "$HOME/.nix-profile")
+            local is_spec=0
+            if [[ "$active_profile" == *"specialisation"* ]]; then is_spec=1; fi
+
+            if [ "$is_spec" -eq 0 ] && [ -f "$spec_activate" ]; then
+              echo "🎨 Switching to Oil Painting palette..."
+              "$spec_activate"
             else
               echo "🎨 Switching to Vaporwave (Base) palette..."
-              rm -f "$active_file"
-              "$main_activate"
+              "$base_activate"
             fi
             
             # Post-switch reloads
@@ -91,16 +96,10 @@
             hyprctl reload >/dev/null 2>&1
             pkill -USR1 kitty 2>/dev/null
             
-            # Robust Waybar restart to prevent duplicates
-            killall -q waybar
-            # Wait for waybar to actually exit
-            for i in {1..10}; do
-              if ! pgrep -x waybar >/dev/null; then break; fi
-              sleep 0.1
-            done
-            # Force kill if still alive
-            killall -9 -q waybar
-            # Start fresh
+            # Cleanly restart Waybar to avoid duplicates
+            pkill -9 waybar 2>/dev/null
+            killall -9 waybar 2>/dev/null 
+            sleep 0.3
             hyprctl dispatch exec waybar
             ;;
           wallpaper)

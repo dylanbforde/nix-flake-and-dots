@@ -27,6 +27,7 @@
     swaylock
     dunst
     libnotify
+    psmisc
   ];
 
   # Home Manager Config
