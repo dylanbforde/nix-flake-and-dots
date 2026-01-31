@@ -165,13 +165,13 @@
       layerrule = ignorealpha 0.4, wofi
 
       # Window rules for app-specific opacity (active inactive)
-      windowrulev2 = opacity 0.80 0.70, class:^(kitty)$
-      windowrulev2 = opacity 0.90 0.85, class:^(Code)$
-      windowrulev2 = opacity 0.92 0.88, class:^(brave-browser)$
-      windowrulev2 = opacity 0.92 0.88, class:^(Brave-browser)$
-      windowrulev2 = opacity 0.92 0.88, class:^(chromium)$
-      windowrulev2 = opacity 0.90 0.85, class:^(thunar)$
-      windowrulev2 = opacity 0.85 0.80, class:^(org.gnome.Nautilus)$
+      windowrulev2 = opacity 0.70 0.60, class:^(kitty)$
+      windowrulev2 = opacity 0.85 0.80, class:^(Code)$
+      windowrulev2 = opacity 0.85 0.80, class:^(brave-browser)$
+      windowrulev2 = opacity 0.85 0.80, class:^(Brave-browser)$
+      windowrulev2 = opacity 0.85 0.80, class:^(chromium)$
+      windowrulev2 = opacity 0.85 0.80, class:^(thunar)$
+      windowrulev2 = opacity 0.80 0.75, class:^(org.gnome.Nautilus)$
       '' else ""}
     '';
   };
