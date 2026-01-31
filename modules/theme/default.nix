@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, pkgs, ... }:
 
 let
   palettes = import ./palettes.nix;
@@ -12,7 +12,18 @@ in
     };
     wallpaper = lib.mkOption {
       type = lib.types.path;
+      default = ../wallpapers/background_wallpaper.jpg;
       description = "The active wallpaper path.";
+    };
+    opacity = lib.mkOption {
+      type = lib.types.float;
+      default = 1.0;
+      description = "Window opacity.";
+    };
+    glass = lib.mkOption {
+      type = lib.types.bool;
+      default = false;
+      description = "Enable glassy effects.";
     };
   };
 }

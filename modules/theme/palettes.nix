@@ -29,31 +29,31 @@
   };
   
   oil_painting = {
-    base = "#282c31";    # Deep charcoal/earth
-    mantle = "#1e2124";
-    crust = "#191c1f";
-    text = "#dcd7ba";    # Parchment white
-    subtext0 = "#c0b196";
-    subtext1 = "#a69a83";
-    surface0 = "#3e444b";
-    surface1 = "#4c535b";
-    surface2 = "#5a626a";
-    overlay0 = "#727169";
-    overlay1 = "#8a897e";
-    overlay2 = "#a2a193";
-    blue = "#7e9cd8";     # Deep sky
-    lavender = "#957fb8"; # Muted purple
-    sapphire = "#7fb4ca";
-    sky = "#7fb4ca";
-    teal = "#76946a";     # Forest green
-    green = "#98bb6c";    # Bright moss
-    yellow = "#e6c384";   # Aged gold
-    peach = "#ffa066";    # Sunset orange
-    maroon = "#d27e99";
-    red = "#c34043";      # Deep clay red
-    mauve = "#957fb8";
-    pink = "#d27e99";
-    flamingo = "#d27e99";
-    rosewater = "#f2ece2";
+    base = "#1a1612";    # Darker, warmer "Umber" background
+    mantle = "#15120e";
+    crust = "#0f0c09";
+    text = "#e6d5b8";    # Warm parchment
+    subtext0 = "#d1bfa1";
+    subtext1 = "#baaa8a";
+    surface0 = "#2a221b";
+    surface1 = "#3a3026";
+    surface2 = "#4a3e31";
+    overlay0 = "#615444";
+    overlay1 = "#786a57";
+    overlay2 = "#8f806a";
+    blue = "#6b8daf";     # Muted slate blue
+    lavender = "#9a86b7"; 
+    sapphire = "#6b8daf";
+    sky = "#8aadf4";
+    teal = "#87986a";     # Ancient green
+    green = "#87986a";    
+    yellow = "#c19a6b";   # Burnt gold
+    peach = "#c17753";    # Terracotta
+    maroon = "#a65e5e";
+    red = "#a65e5e";      # Oxide red
+    mauve = "#9a86b7";
+    pink = "#c17753";
+    flamingo = "#c17753";
+    rosewater = "#e6d5b8";
   };
 }

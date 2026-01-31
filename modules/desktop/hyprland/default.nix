@@ -123,6 +123,30 @@
       bind = $mod, 9, workspace, 9
       bind = $mod, 0, workspace, 10
 
+      # Move active window to a workspace with mod + SHIFT + [0-9]
+      bind = $mod SHIFT, 1, movetoworkspace, 1
+      bind = $mod SHIFT, 2, movetoworkspace, 2
+      bind = $mod SHIFT, 3, movetoworkspace, 3
+      bind = $mod SHIFT, 4, movetoworkspace, 4
+      bind = $mod SHIFT, 5, movetoworkspace, 5
+      bind = $mod SHIFT, 6, movetoworkspace, 6
+      bind = $mod SHIFT, 7, movetoworkspace, 7
+      bind = $mod SHIFT, 8, movetoworkspace, 8
+      bind = $mod SHIFT, 9, movetoworkspace, 9
+      bind = $mod SHIFT, 0, movetoworkspace, 10
+
+      # Move window with mod + SHIFT + arrow keys
+      bind = $mod SHIFT, left, movewindow, l
+      bind = $mod SHIFT, right, movewindow, r
+      bind = $mod SHIFT, up, movewindow, u
+      bind = $mod SHIFT, down, movewindow, d
+
+      # Resize window with mod + CTRL + arrow keys
+      bind = $mod CTRL, left, resizeactive, -20 0
+      bind = $mod CTRL, right, resizeactive, 20 0
+      bind = $mod CTRL, up, resizeactive, 0 -20
+      bind = $mod CTRL, down, resizeactive, 0 20
+
       # Volume/Brightness
       bindel = , XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
       bindel = , XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
