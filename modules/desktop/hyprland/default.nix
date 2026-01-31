@@ -39,9 +39,12 @@
     '';
     
     xdg.configFile."hypr/hyprland.conf".text = let
-      c = config.home-manager.users.dylan.theme.palette;
+      t = config.home-manager.users.dylan.theme;
+      c = t.palette;
       # Strip # for hyprland rgb() wrapper
       strip = hex: pkgs.lib.strings.removePrefix "#" hex;
+      # Helper for glassy borders
+      border_color = if t.glass then "rgba(${strip c.mauve}cc)" else "rgb(${strip c.mauve})";
     in ''
       # Templated Hyprland Config
       
@@ -56,17 +59,21 @@
           gaps_in = 5
           gaps_out = 10
           border_size = 2
-          col.active_border = rgb(${strip c.mauve}) rgb(${strip c.teal}) 45deg
+          col.active_border = ${border_color} rgb(${strip c.teal}) 45deg
           col.inactive_border = rgb(${strip c.surface1})
           layout = dwindle
       }
 
       decoration {
           rounding = 0
+          active_opacity = ${toString t.opacity}
+          inactive_opacity = ${toString (t.opacity - 0.1)}
+          
           blur {
               enabled = true
-              size = 3
-              passes = 1
+              size = 6
+              passes = 3
+              new_optimizations = true
           }
           shadow {
               enabled = true

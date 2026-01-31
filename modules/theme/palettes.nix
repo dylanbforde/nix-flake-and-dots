@@ -29,31 +29,31 @@
   };
   
   oil_painting = {
-    base = "#2d2a2e"; # Dark earthy background
-    mantle = "#221f22";
-    crust = "#19181a";
-    text = "#e3e1e4";
-    subtext0 = "#b9b9b9";
-    subtext1 = "#a6a6a6";
-    surface0 = "#403e41";
-    surface1 = "#4d4d4d";
-    surface2 = "#595959";
-    overlay0 = "#727072";
-    overlay1 = "#8c8c8c";
-    overlay2 = "#a6a6a6";
-    blue = "#78dce8"; # Cyan/Sky
-    lavender = "#ab9df2"; # Purple
-    sapphire = "#78dce8";
-    sky = "#78dce8";
-    teal = "#a9dc76"; # Sage green
-    green = "#a9dc76";
-    yellow = "#ffd866"; # Gold
-    peach = "#ff6188"; # Rose
-    maroon = "#ff6188";
-    red = "#ff6188";
-    mauve = "#ab9df2";
-    pink = "#fc9867"; # Orange
-    flamingo = "#fc9867";
-    rosewater = "#f5e0dc";
+    base = "#282c31";    # Deep charcoal/earth
+    mantle = "#1e2124";
+    crust = "#191c1f";
+    text = "#dcd7ba";    # Parchment white
+    subtext0 = "#c0b196";
+    subtext1 = "#a69a83";
+    surface0 = "#3e444b";
+    surface1 = "#4c535b";
+    surface2 = "#5a626a";
+    overlay0 = "#727169";
+    overlay1 = "#8a897e";
+    overlay2 = "#a2a193";
+    blue = "#7e9cd8";     # Deep sky
+    lavender = "#957fb8"; # Muted purple
+    sapphire = "#7fb4ca";
+    sky = "#7fb4ca";
+    teal = "#76946a";     # Forest green
+    green = "#98bb6c";    # Bright moss
+    yellow = "#e6c384";   # Aged gold
+    peach = "#ffa066";    # Sunset orange
+    maroon = "#d27e99";
+    red = "#c34043";      # Deep clay red
+    mauve = "#957fb8";
+    pink = "#d27e99";
+    flamingo = "#d27e99";
+    rosewater = "#f2ece2";
   };
 }
