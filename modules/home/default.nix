@@ -14,8 +14,8 @@
   # Specialisation for Theme Switching
   specialisation."oil-painting".configuration = {
     theme.palette = (import ../theme/palettes.nix).oil_painting;
-    theme.wallpaper = pkgs.lib.mkForce ../wallpapers/oil_painting_ruins.jpg;
-    theme.opacity = 0.85;
+    theme.wallpaper = pkgs.lib.mkForce ../wallpapers/claude-monet-le-grand-canal-et-santa-maria-della-salute.jpg;
+    theme.opacity = 0.95;
     theme.glass = true;
   };
 

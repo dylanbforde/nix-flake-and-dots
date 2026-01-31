@@ -72,13 +72,15 @@
           
           blur {
               enabled = true
-              size = 6
-              passes = 3
+              size = ${if t.glass then "8" else "6"}
+              passes = ${if t.glass then "4" else "3"}
               new_optimizations = true
+              vibrancy = ${if t.glass then "0.18" else "0.0"}
+              noise = ${if t.glass then "0.01" else "0.0"}
           }
           shadow {
               enabled = true
-              range = 4
+              range = ${if t.glass then "20" else "4"}
               render_power = 3
               color = rgba(1a1a1aee)
           }
@@ -154,6 +156,19 @@
       bindl = , XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
       bindel = , XF86MonBrightnessUp, exec, brightnessctl set +5%
       bindel = , XF86MonBrightnessDown, exec, brightnessctl set 5%-
+
+      ${if t.glass then ''
+      # Layer rules for glass effect
+      layerrule = blur, waybar
+      layerrule = ignorealpha 0.4, waybar
+      layerrule = blur, wofi
+      layerrule = ignorealpha 0.4, wofi
+
+      # Window rules for app-specific opacity
+      windowrule = opacity 0.85 0.75, ^(kitty)$
+      windowrule = opacity 0.90 0.80, ^(Code)$
+      windowrule = opacity 0.90 0.85, ^(firefox)$
+      '' else ""}
     '';
   };
 }
