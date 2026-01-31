@@ -51,7 +51,7 @@
       font_family      JetBrainsMono Nerd Font
       font_size        11.0
       window_padding_width 4
-      background_opacity ${if t.glass then "0.68" else "0.9"}
+      background_opacity ${if t.glass then "0.55" else "0.9"}
     '';
   };
 }

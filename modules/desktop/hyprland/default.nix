@@ -72,10 +72,10 @@
           
           blur {
               enabled = true
-              size = ${if t.glass then "8" else "6"}
-              passes = ${if t.glass then "4" else "3"}
+              size = ${if t.glass then "6" else "6"}
+              passes = ${if t.glass then "3" else "3"}
               new_optimizations = true
-              vibrancy = ${if t.glass then "0.18" else "0.0"}
+              vibrancy = ${if t.glass then "0.20" else "0.0"}
               noise = ${if t.glass then "0.01" else "0.0"}
           }
           shadow {
@@ -164,10 +164,14 @@
       layerrule = blur, wofi
       layerrule = ignorealpha 0.4, wofi
 
-      # Window rules for app-specific opacity
-      windowrule = opacity 0.85 0.75, ^(kitty)$
-      windowrule = opacity 0.90 0.80, ^(Code)$
-      windowrule = opacity 0.90 0.85, ^(firefox)$
+      # Window rules for app-specific opacity (active inactive)
+      windowrulev2 = opacity 0.80 0.70, class:^(kitty)$
+      windowrulev2 = opacity 0.90 0.85, class:^(Code)$
+      windowrulev2 = opacity 0.92 0.88, class:^(brave-browser)$
+      windowrulev2 = opacity 0.92 0.88, class:^(Brave-browser)$
+      windowrulev2 = opacity 0.92 0.88, class:^(chromium)$
+      windowrulev2 = opacity 0.90 0.85, class:^(thunar)$
+      windowrulev2 = opacity 0.85 0.80, class:^(org.gnome.Nautilus)$
       '' else ""}
     '';
   };
