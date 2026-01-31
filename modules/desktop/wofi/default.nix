@@ -11,11 +11,22 @@
     xdg.configFile."wofi/style.css".text = let
       c = config.theme.palette;
       t = config.theme;
-      # Helper to convert hex to rgba for glass effect
+      # Helper to convert a single hex char to int
+      hexCharToInt = ch:
+        if ch == "0" then 0 else if ch == "1" then 1 else if ch == "2" then 2
+        else if ch == "3" then 3 else if ch == "4" then 4 else if ch == "5" then 5
+        else if ch == "6" then 6 else if ch == "7" then 7 else if ch == "8" then 8
+        else if ch == "9" then 9 else if ch == "a" || ch == "A" then 10
+        else if ch == "b" || ch == "B" then 11 else if ch == "c" || ch == "C" then 12
+        else if ch == "d" || ch == "D" then 13 else if ch == "e" || ch == "E" then 14
+        else if ch == "f" || ch == "F" then 15 else 0;
+      # Convert two hex chars to int (0-255)
+      hexPairToInt = s: (hexCharToInt (builtins.substring 0 1 s)) * 16 + (hexCharToInt (builtins.substring 1 1 s));
+      # Helper to convert hex color to rgba
       hexToRgba = hex: alpha: let
-        r = pkgs.lib.toInt "0x${builtins.substring 1 2 hex}";
-        g = pkgs.lib.toInt "0x${builtins.substring 3 2 hex}";
-        b = pkgs.lib.toInt "0x${builtins.substring 5 2 hex}";
+        r = hexPairToInt (builtins.substring 1 2 hex);
+        g = hexPairToInt (builtins.substring 3 2 hex);
+        b = hexPairToInt (builtins.substring 5 2 hex);
       in "rgba(${toString r}, ${toString g}, ${toString b}, ${alpha})";
       # Glass-aware colors
       baseBg = if t.glass then hexToRgba c.base "0.80" else c.base;
