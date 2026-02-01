@@ -22,6 +22,9 @@
     yazi
     unzip
     jq
+    playerctl
+    obsidian
+    rclone
   ];
 
   # Thunar

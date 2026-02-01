@@ -107,6 +107,10 @@
       bind = $mod, Tab, changegroupactive
       bind = $mod, S, togglespecialworkspace, magic
       bind = $mod SHIFT, S, movetoworkspace, special:magic
+
+      # Screenshots
+      bind = , Print, exec, grim ~/Pictures/Screenshots/$(date +%Y%m%d_%H%M%S).png && notify-send "Screenshot saved"
+      bind = $mod, Print, exec, grim -g "$(slurp)" ~/Pictures/Screenshots/$(date +%Y%m%d_%H%M%S).png && notify-send "Screenshot saved"
       
       # Arrows
       bind = $mod, left, movefocus, l
