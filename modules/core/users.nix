@@ -4,7 +4,9 @@
   users.users.dylan = {
     isNormalUser = true;
     description = "Dylan";
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
+    # Sentinel: Removed "docker" group to prevent privilege escalation.
+    # Rootless docker is enabled via virtualisation.docker.rootless.enable = true
+    extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
       kdePackages.kate
     ];
