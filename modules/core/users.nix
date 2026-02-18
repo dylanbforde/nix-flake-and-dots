@@ -4,7 +4,9 @@
   users.users.dylan = {
     isNormalUser = true;
     description = "Dylan";
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
+    # Sentinel: Removed "docker" group to prevent implicit root access.
+    # Use rootless docker (configured in dev.nix) or sudo for system daemon.
+    extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
       kdePackages.kate
     ];
