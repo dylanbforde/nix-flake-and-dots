@@ -4,6 +4,10 @@
   home.username = "dylan";
   home.homeDirectory = "/home/dylan";
 
+  home.sessionPath = [
+    "$HOME/.local/bin"
+  ];
+
   # Home Manager Settings
   home.stateVersion = "25.05";
   programs.home-manager.enable = true;
@@ -47,7 +51,7 @@
       echo "Creating CUDA container: $name"
       distrobox create -Y -n "$name" --image nvidia/cuda:12.4.1-devel-ubuntu22.04 --nvidia --home "$PWD" --init-hooks "apt-get update && apt-get install -y curl"
       fi
-      distrobox enter "$name" -- bash -c 'if ! command -v uv &> /dev/null; then echo "Installing uv..."; curl -LsSf https://astral.sh/uv/install.sh | sh; fi; exec bash'
+      distrobox enter "$name" -- bash -c 'if ! command -v uv &> /dev/null; then echo "Installing uv..."; curl -LsSf https://astral.sh/uv/install.sh | sh -s -- --no-modify-path; fi; exec bash'
       }
 
       db-dev() {
@@ -55,7 +59,7 @@
       echo "Starting devbox..."
       distrobox create -n devbox --image ubuntu:22.04 --init-hooks "apt-get update && apt-get install -y curl"
       fi
-      distrobox enter devbox -- bash -c 'if ! command -v uv &> /dev/null; then echo "Installing uv..."; curl -LsSf https://astral.sh/uv/install.sh | sh; fi; exec bash'
+      distrobox enter devbox -- bash -c 'if ! command -v uv &> /dev/null; then echo "Installing uv..."; curl -LsSf https://astral.sh/uv/install.sh | sh -s -- --no-modify-path; fi; exec bash'
       }
 
 
