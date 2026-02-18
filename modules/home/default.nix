@@ -45,18 +45,17 @@
         local name="cuda-$(basename "$PWD")"
         if ! distrobox list | grep -q "$name"; then
           echo "Creating CUDA container: $name"
-          distrobox create -Y -n "$name" --image nvidia/cuda:12.4.1-devel-ubuntu22.04 --nvidia --home "$PWD"
+          distrobox create -Y -n "$name" --image nvidia/cuda:12.4.1-devel-ubuntu22.04 --nvidia --home "$PWD" --init-hooks "apt-get update && apt-get install -y curl; curl -LsSf https://astral.sh/uv/install.sh | sh"
         fi
         distrobox enter "$name"
       }
 
-      db-ubuntu() {
-        local name="ubuntu-$(basename "$PWD")"
-        if ! distrobox list | grep -q "$name"; then
-          echo "Creating Ubuntu container: $name"
-          distrobox create -Y -n "$name" --image ubuntu:22.04 --home "$PWD"
+      db-dev() {
+        if ! distrobox list | grep -q "devbox"; then
+          echo "Starting devbox..."
+          distrobox create -n devbox --image ubuntu:22.04 --init-hooks "apt-get update && apt-get install -y curl; curl -LsSf https://astral.sh/uv/install.sh | sh"
         fi
-        distrobox enter "$name"
+        distrobox enter devbox
       }
 
       # Advanced Theme Switcher

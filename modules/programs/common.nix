@@ -25,6 +25,7 @@
     playerctl
     obsidian
     rclone
+    tmux
   ];
 
   # Thunar
