@@ -4,7 +4,8 @@
   users.users.dylan = {
     isNormalUser = true;
     description = "Dylan";
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
+    # Removed "docker" group to enforce rootless docker usage and prevent privilege escalation
+    extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
       kdePackages.kate
     ];
