@@ -38,5 +38,14 @@
         ];
       };
     };
+
+    checks = let
+      system = "x86_64-linux";
+    in {
+      ${system} = {
+        nixos-laptop = self.nixosConfigurations.nixos-laptop.config.system.build.toplevel;
+        nixos-desktop = self.nixosConfigurations.nixos-desktop.config.system.build.toplevel;
+      };
+    };
   };
 }
