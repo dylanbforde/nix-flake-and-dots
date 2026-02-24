@@ -4,7 +4,7 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  nixpkgs.overlays = [ inputs.antigravity-nix.overlays.default ];
+  
 
   nix = {
     settings = {
