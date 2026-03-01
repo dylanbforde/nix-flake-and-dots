@@ -12,6 +12,9 @@
     NIXOS_OZONE_WL = "1";
   };
 
+  # Required for swaylock to authenticate correctly
+  security.pam.services.swaylock = {};
+
   xdg.portal = {
     enable = true;
     extraPortals = [ pkgs.xdg-desktop-portal-hyprland pkgs.xdg-desktop-portal-gtk ];
