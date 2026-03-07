@@ -5,6 +5,8 @@
   imports = [
     ./hardware-configuration.nix # You must generate this on the desktop!
     
+    ../../modules/hardware/nvidia.nix
+
     ../../modules/core/default.nix
     ../../modules/networking/default.nix
     ../../modules/programs/common.nix
