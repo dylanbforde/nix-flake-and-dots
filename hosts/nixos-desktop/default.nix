@@ -15,6 +15,10 @@
     ../../modules/desktop/wofi/default.nix
     ../../modules/programs/fastfetch/default.nix
   ];
+  
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.systemd-boot.configurationLimit = 3;
+  boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "nixos-desktop";
   system.stateVersion = "25.05";
