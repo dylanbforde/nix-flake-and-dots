@@ -3,7 +3,7 @@
 
 {
   imports = [
-    # ./hardware-configuration.nix # You must generate this on the desktop!
+    ./hardware-configuration.nix # You must generate this on the desktop!
     
     ../../modules/core/default.nix
     ../../modules/networking/default.nix
