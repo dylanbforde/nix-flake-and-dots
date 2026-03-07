@@ -20,6 +20,8 @@
   boot.loader.systemd-boot.configurationLimit = 3;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  services.tlp.enable = true;
+
   networking.hostName = "nixos-laptop";
   system.stateVersion = "25.05";
 }

@@ -2,17 +2,24 @@
   description = "NixOS Configurations";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.05";
+      url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs: {
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, ... }@inputs: 
+  let
+    overlay-unstable = final: prev: {
+      unstable = import nixpkgs-unstable {
+        system = prev.system;
+        config.allowUnfree = true;
+      };
+    };
+  in {
     # NixOS Configs
     nixosConfigurations = {
       # Laptop Configuration
@@ -22,6 +29,7 @@
         modules = [
           ./hosts/nixos-laptop/configuration.nix
           ./modules/core/home-manager.nix
+          ({ ... }: { nixpkgs.overlays = [ overlay-unstable ]; })
         ];
       };
 
@@ -32,6 +40,7 @@
         modules = [
           ./hosts/nixos-desktop/default.nix
           ./modules/core/home-manager.nix
+          ({ ... }: { nixpkgs.overlays = [ overlay-unstable ]; })
         ];
       };
     };

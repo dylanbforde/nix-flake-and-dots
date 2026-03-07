@@ -27,7 +27,8 @@
     wl-clipboard
     grim
     slurp
-    swaylock
+    hypridle
+    hyprlock
     dunst
     libnotify
     psmisc
@@ -40,6 +41,85 @@
     in ''
       preload = ${wp}
       wallpaper = ,${wp}
+    '';
+
+    xdg.configFile."hypr/hypridle.conf".text = ''
+      general {
+          lock_cmd = pidof hyprlock || hyprlock       # avoid starting multiple hyprlock instances.
+          before_sleep_cmd = loginctl lock-session    # lock before suspend.
+          after_sleep_cmd = hyprctl dispatch dpms on  # to avoid having to press a key twice to turn on the display.
+      }
+
+      listener {
+          timeout = 150                                # 2.5min.
+          on-timeout = brightnessctl -s set 10         # set monitor backlight to minimum, avoid 0 on OLED monitor.
+          on-resume = brightnessctl -r                 # monitor backlight restore.
+      }
+
+      listener {
+          timeout = 300                                 # 5min
+          on-timeout = loginctl lock-session            # lock screen when timeout has passed
+      }
+
+      listener {
+          timeout = 330                                 # 5.5min
+          on-timeout = hyprctl dispatch dpms off        # screen off when timeout has passed
+          on-resume = hyprctl dispatch dpms on          # screen on when activity is detected
+      }
+
+      listener {
+          timeout = 1800                                # 30min
+          on-timeout = systemctl suspend                # suspend pc
+      }
+    '';
+
+    xdg.configFile."hypr/hyprlock.conf".text = let
+      t = config.theme;
+      c = t.palette;
+      strip = hex: pkgs.lib.strings.removePrefix "#" hex;
+    in ''
+      general {
+          no_fade_in = false
+          grace = 0
+          disable_loading_bar = true
+      }
+
+      background {
+          monitor =
+          path = ${t.wallpaper}
+          color = rgba(25, 20, 20, 1.0)
+          blur_passes = 2
+          blur_size = 7
+      }
+
+      input-field {
+          monitor =
+          size = 200, 50
+          outline_thickness = 3
+          dots_size = 0.33
+          dots_spacing = 0.15
+          dots_center = true
+          outer_color = rgb(${strip c.mauve})
+          inner_color = rgb(${strip c.base})
+          font_color = rgb(${strip c.text})
+          fade_on_empty = true
+          placeholder_text = <i>Password...</i>
+          hide_input = false
+          position = 0, -20
+          halign = center
+          valign = center
+      }
+
+      label {
+          monitor =
+          text = $TIME
+          color = rgb(${strip c.text})
+          font_size = 64
+          font_family = JetBrains Mono Nerd Font
+          position = 0, 80
+          halign = center
+          valign = center
+      }
     '';
     
     xdg.configFile."hypr/hyprland.conf".text = let
@@ -55,6 +135,7 @@
       monitor=,preferred,auto,1
 
       exec-once = hyprpaper &
+      exec-once = hypridle &
       exec-once = waybar &
       exec-once = nm-applet &
       exec-once = dunst &
@@ -104,6 +185,8 @@
       # Binds
       bind = $mod, RETURN, exec, kitty
       bind = $mod, D, exec, wofi --show drun
+      bind = $mod, L, exec, hyprlock
+      bind = $mod, B, exec, brave
       bind = $mod, W, killactive, 
       bind = $mod, F, fullscreen, 
       bind = $mod, G, togglegroup
