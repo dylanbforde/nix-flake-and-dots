@@ -40,6 +40,8 @@
   # Printing
   services.printing.enable = true;
 
+  services.upower.enable=true;
+
   # Audio
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
