@@ -31,6 +31,12 @@
   };
 
   ################################
+  # Security
+  ################################
+  # Secure graphical privilege escalation
+  security.polkit.enable = true;
+
+  ################################
   # Sound & Bluetooth & Printing
   ################################
   # Bluetooth

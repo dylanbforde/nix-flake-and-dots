@@ -1,0 +1,4 @@
+## 2024-03-07 - Explicit Security Boundaries in NixOS
+**Vulnerability:** System configurations (like firewall state and Polkit) relying implicitly on upstream or NixOS defaults rather than explicit definition.
+**Learning:** A core security pattern for this repository is to always explicitly define security boundaries and mechanisms (like `networking.firewall.enable = true;` and `security.polkit.enable = true;`). Relying on defaults, especially across potentially diverging system definitions (like 'nixos-desktop' and 'nixos-laptop'), creates a risk where security mechanisms might be silently disabled if default behaviors change in upstream NixOS modules.
+**Prevention:** Always declare key security features explicitly (firewall, polkit, etc.) as a defense-in-depth measure to ensure the intended security posture is guaranteed regardless of defaults.
