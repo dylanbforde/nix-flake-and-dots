@@ -1,0 +1,4 @@
+## 2026-03-09 - [Explicit Security Boundaries (Polkit & Firewall)]
+**Vulnerability:** Core security mechanisms like the firewall and Polkit were missing explicit enablement. While some frameworks or OS default settings might provide them, relying on defaults could silently lead to exposed ports (especially since OpenSSH is enabled) or insecure graphical privilege escalation if upstream defaults change.
+**Learning:** In NixOS configurations, it is critical to explicitly configure defense-in-depth measures to ensure intended security posture. Relying on implicit framework or OS defaults presents an unmanaged and undocumented risk surface.
+**Prevention:** Always explicitly define required security boundaries, such as `networking.firewall.enable = true` and `security.polkit.enable = true`. Make the intended security posture a coded requirement rather than a default-dependent state.
