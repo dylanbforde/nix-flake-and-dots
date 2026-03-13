@@ -42,6 +42,9 @@
 
   services.upower.enable=true;
 
+  # Security
+  security.polkit.enable = true; # Sentinel: explicit security boundary
+
   # Audio
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
