@@ -1,0 +1,4 @@
+## 2024-05-24 - [Explicit Security Boundaries in NixOS]
+**Vulnerability:** System configurations implicitly relied on NixOS framework defaults for firewall and SSH security settings (e.g. allowing password authentication), which could be changed upstream and weaken security posture without notice. Furthermore, the lack of explicit graphical privilege escalation framework meant users may resort to insecure sudo configurations for graphical applications.
+**Learning:** In declarative configurations like NixOS, failing to explicitly define core security boundaries creates a brittle security posture that relies entirely on defaults.
+**Prevention:** Always explicitly define security boundaries and mechanisms (like `networking.firewall.enable = true;`, `services.openssh.settings.PasswordAuthentication = false`, and `security.polkit.enable = true;`) rather than relying on framework or OS defaults.
