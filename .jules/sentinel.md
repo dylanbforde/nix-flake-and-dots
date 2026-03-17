@@ -1,0 +1,4 @@
+## 2024-05-18 - Missing Explicit Security Boundaries in NixOS Configuration
+**Vulnerability:** Core security mechanisms like the firewall and Polkit were disabled or not explicitly defined in the NixOS configurations, and SSH was allowing password authentication.
+**Learning:** In NixOS configurations, explicit configuration of security boundaries (e.g., `networking.firewall.enable = true;`, `security.polkit.enable = true;`, and `services.openssh.settings.PasswordAuthentication = false;`) is critical to ensure proper defense-in-depth, rather than relying on framework or OS defaults which may change.
+**Prevention:** Always explicitly define core security settings in foundational `.nix` modules (`networking`, `system`) instead of relying on defaults, and verify these configurations are active.
