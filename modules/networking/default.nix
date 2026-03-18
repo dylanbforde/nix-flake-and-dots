@@ -2,6 +2,7 @@
 
 {
   networking.networkmanager.enable = true;
+  networking.firewall.enable = true;
 
   # Tailscale
   services.tailscale.enable = true;
