@@ -45,6 +45,11 @@
   # Audio
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
+
+  # 🛡️ Sentinel: Enable Polkit for secure graphical privilege escalation
+  # Required by Hyprland/Wayland to avoid running GUI apps as root
+  security.polkit.enable = true;
+
   services.pipewire = {
     enable = true;
     alsa.enable = true;
