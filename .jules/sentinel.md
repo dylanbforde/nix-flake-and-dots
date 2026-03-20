@@ -1,0 +1,4 @@
+## 2024-05-14 - Explicit Security Boundaries
+**Vulnerability:** Core security mechanisms (Polkit and Firewall) were not explicitly enabled in the configuration, relying on system or framework defaults which could change silently.
+**Learning:** In NixOS configurations, defense-in-depth requires explicitly defining security states (like `security.polkit.enable = true;` and `networking.firewall.enable = true;`). Implicit defaults cannot be trusted as an intended security posture.
+**Prevention:** Always declare core security mechanisms explicitly in Nix modules rather than omitting them assuming the default is secure.

@@ -12,6 +12,9 @@
     };
   };
 
+  # Enforce secure graphical privilege escalation in the Hyprland environment
+  security.polkit.enable = true;
+
   ################################
   # Locale / Time
   ################################
