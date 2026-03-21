@@ -45,6 +45,9 @@
   # Audio
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
+
+  # Polkit: Required for secure graphical privilege escalation
+  security.polkit.enable = true;
   services.pipewire = {
     enable = true;
     alsa.enable = true;
