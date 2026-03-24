@@ -4,7 +4,8 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  
+  # Security: explicitly define polkit state for secure graphical privilege escalation
+  security.polkit.enable = true;
 
   nix = {
     settings = {
