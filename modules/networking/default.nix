@@ -3,6 +3,9 @@
 {
   networking.networkmanager.enable = true;
 
+  # explicitly define firewall instead of relying on defaults
+  networking.firewall.enable = true;
+
   # Tailscale
   services.tailscale.enable = true;
 
