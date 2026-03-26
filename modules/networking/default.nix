@@ -2,6 +2,8 @@
 
 {
   networking.networkmanager.enable = true;
+  # Firewall explicitly defined for defense-in-depth
+  networking.firewall.enable = true;
 
   # Tailscale
   services.tailscale.enable = true;
