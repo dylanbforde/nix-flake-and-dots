@@ -4,7 +4,9 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  
+  # Defense in depth: Explicitly enable Polkit for secure privilege escalation,
+  # especially important for GUI environments like Hyprland
+  security.polkit.enable = true;
 
   nix = {
     settings = {
