@@ -55,6 +55,9 @@
   # Gnome Keyring
   services.gnome.gnome-keyring.enable = true;
 
+  # Polkit - Explicitly enable for secure graphical privilege escalation
+  security.polkit.enable = true;
+
   # Fonts
   fonts.packages = with pkgs; [
     nerd-fonts.symbols-only
