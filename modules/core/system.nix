@@ -42,6 +42,9 @@
 
   services.upower.enable=true;
 
+  # Explicitly enable polkit for secure graphical privilege escalation
+  security.polkit.enable = true;
+
   # Audio
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
