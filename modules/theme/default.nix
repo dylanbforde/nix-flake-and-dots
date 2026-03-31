@@ -25,5 +25,10 @@ in
       default = false;
       description = "Enable glassy effects.";
     };
+    screensaver = lib.mkOption {
+      type = lib.types.bool;
+      default = true;
+      description = "Enable screensaver and auto-suspend.";
+    };
   };
 }

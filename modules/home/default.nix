@@ -146,8 +146,17 @@
             hyprctl hyprpaper preload "$next_wp"
             hyprctl hyprpaper wallpaper ",$next_wp"
             ;;
+          screensaver)
+            if pgrep -x "hypridle" > /dev/null; then
+              echo "🚫 Disabling screensaver (killing hypridle)..."
+              pkill hypridle
+            else
+              echo "✅ Enabling screensaver (starting hypridle)..."
+              hypridle & > /dev/null 2>&1
+            fi
+            ;;
           *)
-            echo "Usage: theme-switch [palette|wallpaper]"
+            echo "Usage: theme-switch [palette|wallpaper|screensaver]"
             ;;
         esac
       }
