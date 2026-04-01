@@ -12,6 +12,9 @@
     };
   };
 
+  # Security
+  security.polkit.enable = true;
+
   ################################
   # Locale / Time
   ################################
