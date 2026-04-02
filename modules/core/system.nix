@@ -12,6 +12,9 @@
     };
   };
 
+  # Explicitly enable polkit for secure graphical privilege escalation
+  security.polkit.enable = true;
+
   ################################
   # Locale / Time
   ################################
