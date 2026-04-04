@@ -4,7 +4,8 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  
+  # Security Hardening
+  security.polkit.enable = true;
 
   nix = {
     settings = {
