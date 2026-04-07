@@ -8,4 +8,10 @@
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
+  services.openssh.settings = {
+    PermitRootLogin = "no";
+  };
+
+  # Explicitly enable firewall
+  networking.firewall.enable = true;
 }

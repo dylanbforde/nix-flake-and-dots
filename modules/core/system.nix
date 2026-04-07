@@ -42,6 +42,9 @@
 
   services.upower.enable=true;
 
+  # Polkit
+  security.polkit.enable = true;
+
   # Audio
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;

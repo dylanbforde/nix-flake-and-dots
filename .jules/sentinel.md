@@ -1,0 +1,4 @@
+## 2025-02-07 - Explicit Security Boundaries
+**Vulnerability:** The system relies on implicit upstream OS/framework defaults for core security configurations (like `networking.firewall.enable`, `security.polkit.enable`, and `services.openssh.settings.PermitRootLogin`). This is dangerous because if upstream defaults change to less secure settings, the system silently inherits the weaker security posture.
+**Learning:** Declarative configuration models like NixOS should always explicitly define security boundaries, acting as a defense-in-depth measure even when the framework defaults seem secure.
+**Prevention:** Always explicitly declare boolean flags or settings for core security boundaries (`firewall.enable = true;`, `PermitRootLogin = "no"`, `polkit.enable = true;`) in configuration files instead of relying on default true/false states.
