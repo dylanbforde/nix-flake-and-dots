@@ -21,6 +21,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   services.tlp.enable = true;
+  services.thermald.enable = true;
 
   networking.hostName = "nixos-laptop";
   system.stateVersion = "25.05";

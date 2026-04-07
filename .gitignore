@@ -1,0 +1,14 @@
+# Nix
+result
+result-*
+
+# Secrets
+*.key
+*.pem
+secrets.nix
+.env
+
+# Temporary files
+*.swp
+*~
+.DS_Store

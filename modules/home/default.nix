@@ -36,9 +36,6 @@
   programs.bash = {
     enable = true;
     bashrcExtra = ''
-      if command -v zoxide >/dev/null 2>&1; then
-       eval "$(zoxide init bash)"
-      fi
       if command -v eza >/dev/null 2>&1; then
        alias ls='eza --icons=auto --group-directories-first'
        alias ll='eza -la --icons=auto --group-directories-first'
@@ -161,6 +158,15 @@
         esac
       }
     '';
+  };
+
+  # Modern CLI Tools
+  programs.zoxide.enable = true;
+  programs.fzf.enable = true;
+  programs.bat.enable = true;
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
   };
 
   programs.helix = {

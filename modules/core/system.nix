@@ -4,11 +4,18 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  
+  # Security: explicitly define polkit state for secure graphical privilege escalation
+  security.polkit.enable = true;
 
   nix = {
     settings = {
       experimental-features = [ "nix-command" "flakes" ];
+      auto-optimise-store = true;
+    };
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 7d";
     };
   };
 
