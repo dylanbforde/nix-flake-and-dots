@@ -2,6 +2,7 @@
 
 {
   networking.networkmanager.enable = true;
+  networking.firewall.enable = true;
 
   # Security: explicitly define firewall state to ensure intended security posture
   networking.firewall.enable = true;
