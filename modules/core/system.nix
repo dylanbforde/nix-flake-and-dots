@@ -52,6 +52,8 @@
   # Audio
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
+  # Explicitly define security boundaries for graphical privilege escalation
+  security.polkit.enable = true;
   services.pipewire = {
     enable = true;
     alsa.enable = true;

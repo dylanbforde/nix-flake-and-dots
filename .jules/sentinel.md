@@ -1,0 +1,4 @@
+## 2024-05-18 - Missing Explicit Security Boundaries
+**Vulnerability:** System configurations implicitly relied on default OS behavior for critical security mechanisms, specifically missing `networking.firewall.enable = true` and `security.polkit.enable = true`. This implicit reliance creates a vulnerability where upstream changes to default behaviors could silently degrade the system's security posture, potentially leaving the system without a firewall or allowing unauthorized privilege escalation in graphical environments.
+**Learning:** In declarative systems like NixOS, security mechanisms must be explicitly enabled to ensure the desired security posture is consistently applied and maintained, acting as a defense-in-depth measure against unexpected default changes.
+**Prevention:** Always explicitly define core security boundaries (e.g., firewall, polkit, PAM services) in the configuration rather than relying on framework or OS defaults.

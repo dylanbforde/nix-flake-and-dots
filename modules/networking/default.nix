@@ -11,4 +11,7 @@
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
+
+  # Explicitly define security boundaries for firewall
+  networking.firewall.enable = true;
 }
