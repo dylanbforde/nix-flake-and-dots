@@ -10,5 +10,9 @@
   services.tailscale.enable = true;
 
   # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
+  services.openssh = {
+    enable = true;
+    # Security: Explicitly disable root login to ensure intended security posture even if upstream defaults change.
+    settings.PermitRootLogin = "no";
+  };
 }
