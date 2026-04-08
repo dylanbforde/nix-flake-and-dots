@@ -38,6 +38,7 @@
     hyprlock
     dunst
     libnotify
+    brightnessctl
     psmisc
   ];
 
@@ -198,9 +199,19 @@
       # Binds
       bind = $mod, RETURN, exec, kitty
       bind = $mod, D, exec, wofi --show drun
+      # Shortcuts
       bind = $mod, L, exec, hyprlock
+      bind = $mod, H, exec, keyshelf
       bind = $mod, B, exec, brave
+      bind = $mod, E, exec, thunar
+      bind = $mod, T, exec, kitty -e btop
+      bind = $mod, M, exec, spotify
+      bind = $mod, N, exec, antigravity
       bind = $mod, W, killactive, 
+      bind = $mod, Q, exit, 
+      bind = $mod, V, togglefloating, 
+      bind = $mod, P, pseudo,
+      bind = $mod, J, togglesplit,
       bind = $mod, F, fullscreen, 
       bind = $mod, G, togglegroup
       bind = $mod, Tab, changegroupactive
@@ -208,8 +219,8 @@
       bind = $mod SHIFT, S, movetoworkspace, special:magic
 
       # Screenshots
-      bind = , Print, exec, grim ~/Pictures/Screenshots/$(date +%Y%m%d_%H%M%S).png && notify-send "Screenshot saved"
-      bind = $mod, Print, exec, grim -g "$(slurp)" ~/Pictures/Screenshots/$(date +%Y%m%d_%H%M%S).png && notify-send "Screenshot saved"
+      bind = , Print, exec, hyprshot -m output
+      bind = $mod, Print, exec, hyprshot -m region
       
       # Arrows
       bind = $mod, left, movefocus, l
@@ -257,8 +268,14 @@
       bindel = , XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
       bindel = , XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
       bindl = , XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+      
+      # Monitor Brightness
       bindel = , XF86MonBrightnessUp, exec, brightnessctl set +5%
       bindel = , XF86MonBrightnessDown, exec, brightnessctl set 5%-
+      
+      # Keyboard Brightness
+      bindel = , XF86KbdBrightnessUp, exec, brightnessctl -d *kbd_backlight* set +5%
+      bindel = , XF86KbdBrightnessDown, exec, brightnessctl -d *kbd_backlight* set 5%-
 
       ${if t.glass then ''
       # Layer rules for glass effect
