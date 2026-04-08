@@ -62,6 +62,9 @@
   # Gnome Keyring
   services.gnome.gnome-keyring.enable = true;
 
+  # Security
+  security.polkit.enable = true;
+
   # Fonts
   fonts.packages = with pkgs; [
     nerd-fonts.symbols-only
