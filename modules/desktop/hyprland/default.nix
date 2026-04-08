@@ -18,6 +18,10 @@
   # Required for swaylock to authenticate correctly
   security.pam.services.swaylock = {};
 
+  imports = [
+    ./keyshelf.nix
+  ];
+
   xdg.portal = {
     enable = true;
     extraPortals = [ pkgs.xdg-desktop-portal-hyprland pkgs.xdg-desktop-portal-gtk ];

@@ -162,7 +162,17 @@
 
   # Modern CLI Tools
   programs.zoxide.enable = true;
-  programs.fzf.enable = true;
+  programs.fzf = {
+    enable = true;
+    enableBashIntegration = true;
+    defaultOptions = [
+      "--height 40%"
+      "--layout=reverse"
+      "--border"
+      "--margin=1"
+      "--padding=1"
+    ];
+  };
   programs.bat.enable = true;
   programs.direnv = {
     enable = true;
