@@ -8,16 +8,15 @@
     xwayland.enable = true;
   };
 
-  # Allow swaylock to unlock the screen
-  security.pam.services.swaylock = {};
+  # Security: explicitly configuring PAM for the active screen locker (hyprlock)
+  # Allow hyprlock to unlock the screen
+  security.pam.services.hyprlock = {};
 
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
   };
   
-  # Required for swaylock to authenticate correctly
-  security.pam.services.swaylock = {};
-
+  # Required for hyprlock to authenticate correctly
   imports = [
     ./keyshelf.nix
   ];
