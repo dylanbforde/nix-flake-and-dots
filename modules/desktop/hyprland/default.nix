@@ -8,15 +8,12 @@
     xwayland.enable = true;
   };
 
-  # Allow swaylock to unlock the screen
-  security.pam.services.swaylock = {};
+  # Allow hyprlock to unlock the screen
+  security.pam.services.hyprlock = {};
 
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
   };
-  
-  # Required for swaylock to authenticate correctly
-  security.pam.services.swaylock = {};
 
   imports = [
     ./keyshelf.nix
@@ -26,7 +23,6 @@
     enable = true;
     extraPortals = [ pkgs.xdg-desktop-portal-hyprland pkgs.xdg-desktop-portal-gtk ];
   };
-  
   # Desktop/Hyprland specific packages
   environment.systemPackages = with pkgs; [
     hyprpaper
