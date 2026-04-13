@@ -1,0 +1,4 @@
+## 2024-05-15 - Missing PAM config for active screen locker
+**Vulnerability:** The system uses `hyprlock` as its screen locker, but the explicit PAM configuration is missing (it uses `swaylock` incorrectly, and a duplicate of `swaylock` exists). Without proper PAM configuration, `hyprlock` cannot authenticate users to unlock the session, potentially leading to users being permanently locked out of their sessions, or the lock failing securely/insecurely depending on defaults.
+**Learning:** Legacy configurations (like `swaylock`) might be left over after migrating to new tools (like `hyprlock`), creating a security gap. We must ensure that the PAM configuration accurately reflects the active screen locker.
+**Prevention:** When migrating critical security tools like screen lockers, ensure that associated security infrastructure (like PAM) is updated simultaneously. Review PAM configuration specifically when changing desktop environment components.
