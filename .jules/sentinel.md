@@ -1,0 +1,4 @@
+## 2024-04-18 - Missing PAM Authentication for Screen Locker
+**Vulnerability:** The NixOS configuration explicitly allowed `swaylock` to unlock the screen, but the system actually uses `hyprlock` (configured in hypridle and keybindings). By default, NixOS does not grant PAM authentication rights to screen locker binaries unless explicitly configured.
+**Learning:** If the active screen locker (like `hyprlock`) is not explicitly defined in `security.pam.services.<locker> = {};`, the locker may either fail closed (locking the user out permanently) or fail open (allowing bypass). This mismatch between the installed locker and PAM configuration creates a severe authentication risk.
+**Prevention:** Always verify that `security.pam.services` exactly matches the screen locker binary actually deployed in the desktop environment configuration.
