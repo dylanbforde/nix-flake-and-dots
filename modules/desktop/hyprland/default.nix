@@ -15,7 +15,8 @@
     NIXOS_OZONE_WL = "1";
   };
   
-  # Required for swaylock to authenticate correctly
+  # Required for hyprlock to authenticate correctly
+  security.pam.services.hyprlock = {};
   security.pam.services.swaylock = {};
 
   imports = [

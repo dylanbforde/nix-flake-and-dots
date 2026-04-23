@@ -1,0 +1,4 @@
+## 2024-05-24 - PAM Authentication Bypass / Lockout with Hyprlock
+**Vulnerability:** The active screen locker `hyprlock` lacked explicit PAM authentication declarations in the NixOS configuration, unlike the alternative locker `swaylock` which was correctly configured.
+**Learning:** In NixOS, screen locker binaries are not automatically granted PAM authentication rights. They require an explicit declaration (`security.pam.services.<locker> = {};`) in the system configuration to function securely. Without this, authentication could fail closed (resulting in user lockout) or fail open (bypassing the lock screen).
+**Prevention:** Always verify that newly introduced authentication components or screen lockers are explicitly granted necessary PAM permissions in the system configuration, rather than assuming standard Linux defaults or inheriting permissions from existing lockers.
