@@ -3,6 +3,7 @@
 {
   environment.systemPackages = with pkgs; [
     unstable.antigravity
+    unstable.codex
     brave
     git
     xfce.thunar
