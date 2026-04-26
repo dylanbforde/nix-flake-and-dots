@@ -1,0 +1,4 @@
+## 2024-04-26 - Fix PAM authentication for hyprlock
+**Vulnerability:** `hyprlock` was missing an explicit PAM service configuration `security.pam.services.hyprlock = {};` in the NixOS hyprland configuration, even though it is active as the default lock screen handler via `hypridle`.
+**Learning:** In NixOS, screen lockers are not automatically granted PAM authentication rights, meaning missing this explicit configuration causes lock screens to either fail closed (locking users out permanently until reboot/TTY override) or fail open (bypassing the lock). Duplicate configurations for another locker (`swaylock`) had overshadowed the omission.
+**Prevention:** Always verify that every declared lock screen or display manager explicitly configures its own PAM service in NixOS, and avoid duplicating configuration lines.
