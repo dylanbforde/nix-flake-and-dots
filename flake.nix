@@ -4,6 +4,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    codex-cli-nix.url = "github:sadjow/codex-cli-nix";
 
     home-manager = {
       url = "github:nix-community/home-manager/release-25.11";
@@ -11,11 +12,11 @@
     };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, ... }@inputs: 
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, ... }@inputs:
   let
     overlay-unstable = final: prev: {
       unstable = import nixpkgs-unstable {
-        system = prev.system;
+        system = prev.stdenv.hostPlatform.system;
         config.allowUnfree = true;
       };
     };

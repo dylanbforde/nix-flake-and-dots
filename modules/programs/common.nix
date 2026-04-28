@@ -1,9 +1,9 @@
-{ config, pkgs, ... }:
+{ config, inputs, pkgs, ... }:
 
 {
   environment.systemPackages = with pkgs; [
     unstable.antigravity
-    unstable.codex
+    inputs.codex-cli-nix.packages.${pkgs.system}.default
     brave
     git
     xfce.thunar
@@ -34,6 +34,9 @@
   services.gvfs.enable = true;
   services.tumbler.enable = true;
   programs.thunar.enable = true;
+
+  # Gaming
+  programs.steam.enable = true;
 
   # CLI Tools config
   programs.direnv.enable = true;
