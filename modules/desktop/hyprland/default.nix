@@ -36,6 +36,7 @@
     slurp
     hypridle
     hyprlock
+    hyprshot
     dunst
     libnotify
     brightnessctl
@@ -44,6 +45,97 @@
 
   # Home Manager Config
   home-manager.users.dylan = { config, ... }: {
+    home.packages = [
+      (pkgs.writeShellScriptBin "theme-switch" ''
+        cmd="$1"
+        wp_path="$HOME/wallpapers"
+
+        hm_base="$HOME/.local/state/nix/profiles/home-manager"
+
+        case "$cmd" in
+          palette)
+            hm_real=$(realpath "$hm_base")
+            if [[ "$hm_real" == *"specialisation"* ]]; then
+              hm_real=$(realpath "$hm_real/../../")
+            fi
+
+            spec_activate="$hm_real/specialisation/oil-painting/activate"
+            base_activate="$hm_real/activate"
+
+            active_profile=$(realpath "$HOME/.nix-profile")
+            is_spec=0
+            if [[ "$active_profile" == *"specialisation"* ]]; then is_spec=1; fi
+
+            if [ "$is_spec" -eq 0 ] && [ -f "$spec_activate" ]; then
+              echo "Switching to Oil Painting palette..."
+              "$spec_activate"
+            else
+              echo "Switching to Vaporwave (Base) palette..."
+              "$base_activate"
+            fi
+
+            echo "Refreshing applications..."
+            hyprctl reload >/dev/null 2>&1
+            pkill -USR1 kitty 2>/dev/null
+
+            pkill -9 waybar 2>/dev/null
+            killall -9 waybar 2>/dev/null
+            sleep 0.3
+            hyprctl dispatch exec waybar
+            ;;
+          wallpaper)
+            current_wp=$(hyprctl hyprpaper listactive 2>/dev/null | grep "=" | awk '{print $NF}' | head -n1)
+            [ -z "$current_wp" ] && current_wp=$(grep "wallpaper =" ~/.config/hypr/hyprpaper.conf | cut -d',' -f2 | xargs)
+            current_name=$(basename "$current_wp")
+
+            shopt -s nullglob
+            wps=("$wp_path"/*.jpg "$wp_path"/*.jpeg "$wp_path"/*.png "$wp_path"/*.webp)
+            shopt -u nullglob
+
+            count=''${#wps[@]}
+            if [ "$count" -eq 0 ]; then
+              echo "No wallpapers found in $wp_path. Contents:"
+              ls -F "$wp_path"
+              exit 1
+            fi
+
+            next_wp=""
+            for i in "''${!wps[@]}"; do
+              name=$(basename "''${wps[$i]}")
+              if [ "$name" = "$current_name" ]; then
+                next_idx=$(( (i + 1) % count ))
+                next_wp="''${wps[$next_idx]}"
+                break
+              fi
+            done
+
+            if [ -z "$next_wp" ]; then
+              next_wp="''${wps[0]}"
+              if [ "$(basename "$next_wp")" = "$current_name" ] && [ "$count" -gt 1 ]; then
+                 next_wp="''${wps[1]}"
+              fi
+            fi
+
+            echo "Found $count images. Current: $current_name -> Switching to: $(basename "$next_wp")"
+            hyprctl hyprpaper preload "$next_wp"
+            hyprctl hyprpaper wallpaper ",$next_wp"
+            ;;
+          screensaver)
+            if pgrep -x "hypridle" > /dev/null; then
+              echo "Disabling screensaver (killing hypridle)..."
+              pkill hypridle
+            else
+              echo "Enabling screensaver (starting hypridle)..."
+              hypridle >/dev/null 2>&1 &
+            fi
+            ;;
+          *)
+            echo "Usage: theme-switch [palette|wallpaper|screensaver]"
+            ;;
+        esac
+      '')
+    ];
+
     xdg.configFile."hypr/hyprpaper.conf".text = let
       wp = config.theme.wallpaper;
     in ''

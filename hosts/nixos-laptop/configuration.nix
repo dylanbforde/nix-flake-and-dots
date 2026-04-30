@@ -10,9 +10,7 @@
     ../../modules/programs/common.nix
     ../../modules/programs/dev.nix
     ../../modules/programs/kitty/default.nix
-    ../../modules/desktop/hyprland/default.nix
-    ../../modules/desktop/waybar/default.nix
-    ../../modules/desktop/wofi/default.nix
+    ../../modules/desktop/niri/default.nix
     ../../modules/programs/fastfetch/default.nix
   ];
 
