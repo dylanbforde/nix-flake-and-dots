@@ -95,6 +95,11 @@ in
           background-color "transparent"
         }
 
+        window-rule {
+          match app-id="kitty"
+          draw-border-with-background false
+        }
+
         environment {
           QT_QPA_PLATFORM "wayland"
           ELECTRON_OZONE_PLATFORM_HINT "auto"

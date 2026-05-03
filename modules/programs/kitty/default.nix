@@ -10,6 +10,7 @@
     xdg.configFile."kitty/kitty.conf".text = let
       c = config.theme.palette;
       t = config.theme;
+      terminalOpacity = if t.glass then "0.45" else "0.78";
     in ''
       # Templated Kitty Config
       foreground              ${c.text}
@@ -51,7 +52,7 @@
       font_family      JetBrainsMono Nerd Font
       font_size        11.0
       window_padding_width 4
-      background_opacity ${if t.glass then "0.45" else "0.9"}
+      background_opacity ${terminalOpacity}
     '';
   };
 }
