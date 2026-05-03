@@ -4,6 +4,18 @@ let
   wallpaper = ../../wallpapers/background_wallpaper.jpg;
 in
 {
+  assertions = [
+    {
+      assertion =
+        !(config.systemd.user.services ? niri
+          && config.systemd.user.services.niri.serviceConfig ? ExecStart);
+      message = ''
+        Do not override niri's upstream systemd user ExecStart.
+        Put niri behavior in ~/.config/niri/config.kdl instead.
+      '';
+    }
+  ];
+
   services.displayManager = {
     ly.enable = true;
     defaultSession = lib.mkDefault "niri";
@@ -19,11 +31,12 @@ in
 
   programs.dconf.enable = true;
 
+  # Let niri inherit the full environment imported by niri-session instead of a
+  # stripped systemd default PATH.
+  systemd.user.services.niri.enableDefaultPath = false;
+
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
-    XDG_CURRENT_DESKTOP = "niri";
-    XDG_SESSION_TYPE = "wayland";
-    QT_QPA_PLATFORM = "wayland";
     ELECTRON_OZONE_PLATFORM_HINT = "auto";
   };
 
@@ -45,6 +58,8 @@ in
   environment.systemPackages = with pkgs; [
     xwayland-satellite
     networkmanagerapplet
+    mako
+    wofi
     wl-clipboard
     libnotify
     brightnessctl
@@ -80,11 +95,18 @@ in
           background-color "transparent"
         }
 
+        environment {
+          QT_QPA_PLATFORM "wayland"
+          ELECTRON_OZONE_PLATFORM_HINT "auto"
+        }
+
         spawn-at-startup "${pkgs.networkmanagerapplet}/bin/nm-applet"
+        spawn-at-startup "${pkgs.mako}/bin/mako"
         spawn-at-startup "${pkgs.swaybg}/bin/swaybg" "-i" "${wallpaper}" "-m" "fill"
 
         binds {
           Mod+Return { spawn "${pkgs.kitty}/bin/kitty"; }
+          Mod+D { spawn "${pkgs.wofi}/bin/wofi" "--show" "drun"; }
           Mod+Q { close-window; }
           Mod+Shift+E { quit; }
           Mod+F { fullscreen-window; }
