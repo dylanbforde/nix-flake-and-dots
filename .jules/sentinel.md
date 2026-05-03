@@ -1,0 +1,4 @@
+## 2026-05-03 - [Remove Insecure curl-to-sh Execution Pattern]
+**Vulnerability:** Execution of remote scripts via curl piping directly to shell (`curl | sh`) within container initialization functions bypasses signature verification and can lead to remote code execution if the source is compromised.
+**Learning:** Using `curl | sh` in Distrobox container initialization on NixOS creates an insecure, unverified execution environment, contradicting the reproducible and declarative nature of the host OS. Bootstrapping tools like `uv` within ephemeral environments masks the root issue of missing system-level dependencies.
+**Prevention:** Install dependencies declaratively via Nixpkgs (`environment.systemPackages`) on the host system to ensure reproducibility, cryptographic verification, and to make the tools available across containers without insecure runtime scripts.

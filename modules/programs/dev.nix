@@ -15,6 +15,7 @@
     python3
     nodejs
     gcc
+    uv
   ];
   
   virtualisation.docker = {
