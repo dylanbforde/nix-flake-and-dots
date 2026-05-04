@@ -117,8 +117,21 @@ in
           Mod+F { fullscreen-window; }
           Mod+Left { focus-column-left; }
           Mod+Right { focus-column-right; }
+          Mod+Shift+Left { move-column-left; }
+          Mod+Shift+Right { move-column-right; }
           Mod+Up { focus-window-up; }
           Mod+Down { focus-window-down; }
+          Mod+Page_Down { focus-workspace-down; }
+          Mod+Page_Up { focus-workspace-up; }
+          Mod+Shift+Page_Down { move-column-to-workspace-down; }
+          Mod+Shift+Page_Up { move-column-to-workspace-up; }
+          Mod+R { switch-preset-column-width; }
+          Mod+Shift+F { maximize-column; }
+          Mod+BracketLeft { consume-or-expel-window-left; }
+          Mod+BracketRight { consume-or-expel-window-right; }
+          Mod+V { toggle-window-floating; }
+          Mod+Shift+V { switch-focus-between-floating-and-tiling; }
+          Mod+Space { toggle-overview; }
           Print { screenshot; }
         }
       '';
