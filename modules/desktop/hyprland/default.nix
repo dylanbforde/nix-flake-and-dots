@@ -17,6 +17,8 @@
   
   # Required for swaylock to authenticate correctly
   security.pam.services.swaylock = {};
+  # Required for hyprlock to authenticate correctly
+  security.pam.services.hyprlock = {};
 
   imports = [
     ./keyshelf.nix
