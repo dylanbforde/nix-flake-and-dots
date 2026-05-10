@@ -8,8 +8,8 @@
     xwayland.enable = true;
   };
 
-  # Allow swaylock to unlock the screen
-  security.pam.services.swaylock = {};
+  # Allow hyprlock to unlock the screen
+  security.pam.services.hyprlock = {};
 
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
