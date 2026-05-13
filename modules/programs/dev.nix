@@ -6,7 +6,8 @@
     distrobox
     gemini-cli
     devenv
-    
+    uv
+
     # Languages / Tools (Persistent env)
     # Add more here as needed to avoid ephemeral shells
     google-cloud-sdk
@@ -16,10 +17,13 @@
     nodejs
     gcc
   ];
-  
+
   virtualisation.docker = {
     enable = true;
     enableOnBoot = true;
-    rootless.enable = true;
+    rootless = {
+      enable = true;
+      setSocketVariable = true;
+    };
   };
 }

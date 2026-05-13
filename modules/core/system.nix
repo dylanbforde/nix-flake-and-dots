@@ -1,4 +1,9 @@
-{ config, pkgs, inputs, ... }:
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
 
 {
   # Allow unfree packages
@@ -9,7 +14,10 @@
 
   nix = {
     settings = {
-      experimental-features = [ "nix-command" "flakes" ];
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
       auto-optimise-store = true;
     };
     gc = {
@@ -18,6 +26,10 @@
       options = "--delete-older-than 7d";
     };
   };
+
+  zramSwap.enable = true;
+  services.fstrim.enable = true;
+  services.fwupd.enable = true;
 
   ################################
   # Locale / Time
@@ -47,7 +59,7 @@
   # Printing
   services.printing.enable = true;
 
-  services.upower.enable=true;
+  services.upower.enable = true;
 
   # Audio
   services.pulseaudio.enable = false;

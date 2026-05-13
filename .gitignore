@@ -5,8 +5,21 @@ result-*
 # Secrets
 *.key
 *.pem
+*.p12
+*.pfx
+*.agekey
+id_ed25519
+id_rsa
+age/keys.txt
+**/age/keys.txt
+.config/sops/age/keys.txt
 secrets.nix
+secrets/*.nix
+secrets/*.env
 .env
+.env.*
+!.env.example
+*.tfvars
 
 # Temporary files
 *.swp

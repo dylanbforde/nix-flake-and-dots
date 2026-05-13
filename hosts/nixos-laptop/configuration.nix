@@ -1,14 +1,21 @@
 # /home/dylan/nixos-config/hosts/nixos-laptop/configuration.nix
-{ config, pkgs, inputs, ... }:
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
 
 {
   imports = [
     ./hardware-configuration.nix
-    
+
     ../../modules/core/default.nix
     ../../modules/networking/default.nix
     ../../modules/programs/common.nix
     ../../modules/programs/dev.nix
+    ../../modules/programs/shell.nix
+    ../../modules/security/default.nix
     ../../modules/programs/kitty/default.nix
     ../../modules/desktop/niri/default.nix
     ../../modules/programs/fastfetch/default.nix

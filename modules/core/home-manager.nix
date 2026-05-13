@@ -10,8 +10,8 @@
   home-manager.useUserPackages = true;
 
   home-manager.users.dylan = {
-    imports = [ 
-      ../home/default.nix 
+    imports = [
+      ../home/default.nix
       ../theme/default.nix
     ];
   };
