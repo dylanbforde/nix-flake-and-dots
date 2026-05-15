@@ -1,0 +1,4 @@
+## 2024-05-15 - Missing Explicit PAM Configuration for Screen Lockers (hyprlock)
+**Vulnerability:** The active screen locker `hyprlock` lacked explicit PAM authentication configuration (`security.pam.services.hyprlock = {};`), while `swaylock` had a duplicate entry. In NixOS, screen locker binaries are not automatically granted PAM rights; omitting this causes authentication to fail closed (lockout) or fail open (bypass).
+**Learning:** Security boundaries and authentication mechanisms in NixOS (like PAM for screen lockers) must be explicitly defined and not assumed to work by default or inherited from other screen lockers. Multiple lockers (swaylock, hyprlock) require their own PAM configurations.
+**Prevention:** Always verify that every active screen locker has its corresponding explicit `security.pam.services.<locker> = {};` entry in the NixOS configuration.
