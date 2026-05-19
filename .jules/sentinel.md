@@ -1,0 +1,4 @@
+## 2026-05-19 - Hyprlock PAM Auth Bypass Vulnerability
+**Vulnerability:** The active screen locker `hyprlock` is not explicitly granted PAM authentication rights in `modules/desktop/hyprland/default.nix`, whereas `swaylock` (a secondary locker) is defined twice. This can lead to an authentication bypass or failure to lock correctly because `hyprlock` is invoked without explicit PAM authorization.
+**Learning:** Screen lockers on NixOS (like hyprlock, swaylock) do not automatically integrate with PAM for secure authentication. Each locker binary requires an explicit `security.pam.services.<locker> = {};` declaration in the configuration. Failing to specify this results in the locker being unable to securely authenticate users.
+**Prevention:** Whenever a new screen locking binary is added or switched (e.g., in `hypridle.conf`), corresponding PAM configuration must be explicitly defined and old/duplicate entries cleaned up.
