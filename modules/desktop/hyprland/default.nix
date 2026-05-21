@@ -10,6 +10,7 @@
 
   # Allow swaylock to unlock the screen
   security.pam.services.swaylock = { };
+  security.pam.services.hyprlock = { };
 
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
@@ -17,6 +18,7 @@
 
   # Required for swaylock to authenticate correctly
   security.pam.services.swaylock = { };
+  security.pam.services.hyprlock = { };
 
   imports = [
     ./keyshelf.nix
