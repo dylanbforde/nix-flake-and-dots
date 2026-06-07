@@ -50,17 +50,19 @@
             local name="cuda-$(basename "$PWD")"
             if ! distrobox list | grep -q "$name"; then
               echo "Creating CUDA container: $name"
-              distrobox create -Y -n "$name" --image nvidia/cuda:12.4.1-devel-ubuntu22.04 --nvidia --home "$PWD" --init-hooks "apt-get update && apt-get install -y curl"
+              distrobox create -Y -n "$name" --image nvidia/cuda:12.4.1-devel-ubuntu22.04 --nvidia --home "$PWD"
             fi
-            distrobox enter "$name" -- bash -c 'if ! command -v uv &> /dev/null; then echo "Installing uv..."; curl -LsSf https://astral.sh/uv/install.sh | sh -s -- --no-modify-path; fi; exec bash'
+            # SEC-Fix: Use host-provided uv instead of insecure curl pipe to shell
+            distrobox enter "$name"
           }
 
           db-dev() {
             if ! distrobox list | grep -q "devbox"; then
               echo "Starting devbox..."
-              distrobox create -n devbox --image ubuntu:22.04 --init-hooks "apt-get update && apt-get install -y curl"
+              distrobox create -n devbox --image ubuntu:22.04
             fi
-            distrobox enter devbox -- bash -c 'if ! command -v uv &> /dev/null; then echo "Installing uv..."; curl -LsSf https://astral.sh/uv/install.sh | sh -s -- --no-modify-path; fi; exec bash'
+            # SEC-Fix: Use host-provided uv instead of insecure curl pipe to shell
+            distrobox enter devbox
           }
         '';
       };
