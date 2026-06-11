@@ -1,0 +1,4 @@
+## 2024-06-11 - Missing PAM configuration for Hyprlock
+**Vulnerability:** The NixOS configuration used `hyprlock` as a screen locker triggered by `hypridle`, but it was missing an explicit PAM configuration declaration (`security.pam.services.hyprlock = { };`), while having `swaylock` configured twice.
+**Learning:** In NixOS, screen locker binaries (like `hyprlock` and `swaylock`) are not automatically granted PAM authentication rights. Without explicit configuration, authentication fails closed, meaning users can be locked out of their sessions unable to authenticate to unlock it.
+**Prevention:** Always verify that every screen locker utilized within the desktop environment configuration (e.g., in hypridle or direct shortcuts) has a corresponding explicit PAM service declaration in the NixOS modules.
