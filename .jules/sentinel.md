@@ -1,0 +1,4 @@
+## 2024-07-01 - Default SSH Posture Missing Hardening
+**Vulnerability:** The NixOS OpenSSH configuration was enabled without explicitly disabling root login or password authentication, leaving the system reliant on defaults which may vary or be permissive, increasing the risk of brute-force attacks and unauthorized root access.
+**Learning:** In NixOS declarative configurations, security-critical services like OpenSSH should always explicitly define hardening settings (e.g., `PermitRootLogin = "no"`, `PasswordAuthentication = false`) rather than assuming secure defaults, ensuring the intended security posture is immutable.
+**Prevention:** Always pair `services.openssh.enable = true;` with explicit `services.openssh.settings` to enforce key-based authentication and disable root access as a baseline defense-in-depth measure.
