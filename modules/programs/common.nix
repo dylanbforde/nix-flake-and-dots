@@ -1,6 +1,7 @@
 {
   config,
   inputs,
+  lib,
   pkgs,
   ...
 }:
@@ -76,6 +77,7 @@ in
 {
   environment.systemPackages = with pkgs; [
     unstable.antigravity
+    unstable.nordvpn
     codexCli
     codexDesktop
     codexDesktopReopen
@@ -131,12 +133,23 @@ in
     description = "Mount OneDrive with rclone";
     wantedBy = [ "default.target" ];
     after = [ "graphical-session.target" ];
+    environment.PATH = lib.mkForce (
+      "/run/wrappers/bin:"
+      + lib.makeBinPath [
+        pkgs.coreutils
+        pkgs.findutils
+        pkgs.gnugrep
+        pkgs.gnused
+        pkgs.systemd
+        pkgs.fuse3
+      ]
+    );
 
     serviceConfig = {
       Type = "simple";
       ExecStartPre = "${pkgs.coreutils}/bin/mkdir -p %h/OneDrive";
       ExecStart = "${pkgs.rclone}/bin/rclone mount onedrive: %h/OneDrive --config=%h/.config/rclone/rclone.conf --vfs-cache-mode writes";
-      ExecStop = "${pkgs.fuse3}/bin/fusermount3 -uz %h/OneDrive";
+      ExecStop = "/run/wrappers/bin/fusermount3 -uz %h/OneDrive";
       Restart = "on-failure";
       RestartSec = "10s";
     };

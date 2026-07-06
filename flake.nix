@@ -131,6 +131,9 @@
                 gitleaks detect --no-git --redact --source "$src"
                 touch "$out"
               '';
+
+          nixos-laptop = self.nixosConfigurations.nixos-laptop.config.system.build.toplevel;
+          nixos-desktop = self.nixosConfigurations.nixos-desktop.config.system.build.toplevel;
         }
       );
 
