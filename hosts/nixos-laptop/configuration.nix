@@ -28,6 +28,16 @@
   services.tlp.enable = true;
   services.thermald.enable = true;
 
+  # Keep long-running local work reachable unless the user explicitly locks or
+  # suspends the machine.
+  home-manager.users.dylan.theme.screensaver = false;
+  services.logind.settings.Login = {
+    HandleLidSwitch = "ignore";
+    HandleLidSwitchExternalPower = "ignore";
+    HandleLidSwitchDocked = "ignore";
+    IdleAction = "ignore";
+  };
+
   networking.hostName = "nixos-laptop";
   system.stateVersion = "25.05";
 }

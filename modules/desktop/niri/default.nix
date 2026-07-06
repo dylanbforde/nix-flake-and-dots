@@ -257,7 +257,9 @@ in
             spawn-at-startup "${pkgs.mako}/bin/mako"
             spawn-at-startup "${pkgs.waybar}/bin/waybar"
             spawn-at-startup "${pkgs.swaybg}/bin/swaybg" "-i" "${wallpaper}" "-m" "fill"
-            spawn-at-startup "${pkgs.swayidle}/bin/swayidle" "-w" "timeout" "600" "${pkgs.swaylock}/bin/swaylock -f" "timeout" "1800" "${pkgs.systemd}/bin/systemctl suspend" "before-sleep" "${pkgs.swaylock}/bin/swaylock -f"
+            ${lib.optionalString config.theme.screensaver ''
+              spawn-at-startup "${pkgs.swayidle}/bin/swayidle" "-w" "timeout" "600" "${pkgs.swaylock}/bin/swaylock -f" "timeout" "1800" "${pkgs.systemd}/bin/systemctl suspend" "before-sleep" "${pkgs.swaylock}/bin/swaylock -f"
+            ''}
             spawn-at-startup "${pkgs.wl-clipboard}/bin/wl-paste" "--type" "text" "--watch" "${pkgs.cliphist}/bin/cliphist" "store"
             spawn-at-startup "${pkgs.wl-clipboard}/bin/wl-paste" "--type" "image" "--watch" "${pkgs.cliphist}/bin/cliphist" "store"
 
