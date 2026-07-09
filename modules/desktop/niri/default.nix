@@ -9,6 +9,10 @@ let
   wallpaper = ../../wallpapers/background_wallpaper.jpg;
 in
 {
+  imports = [
+    ../hotkeys.nix
+  ];
+
   assertions = [
     {
       assertion =
@@ -271,7 +275,9 @@ in
               Mod+T { spawn "${pkgs.kitty}/bin/kitty" "-e" "${pkgs.btop}/bin/btop"; }
               Mod+M { spawn "${pkgs.spotify}/bin/spotify"; }
               Mod+N { spawn "${pkgs.unstable.antigravity}/bin/antigravity"; }
+              Mod+Escape { spawn "stay-awake-toggle"; }
               Mod+L { spawn "${pkgs.swaylock}/bin/swaylock" "-f"; }
+              Mod+H { spawn "keyshelf"; }
               Mod+C { spawn "${pkgs.bash}/bin/sh" "-c" "${pkgs.cliphist}/bin/cliphist list | ${pkgs.wofi}/bin/wofi --dmenu | ${pkgs.cliphist}/bin/cliphist decode | ${pkgs.wl-clipboard}/bin/wl-copy"; }
               Mod+Q { close-window; }
               Mod+Shift+E { quit; }

@@ -18,7 +18,7 @@
   security.pam.services.hyprlock = { };
 
   imports = [
-    ./keyshelf.nix
+    ../hotkeys.nix
   ];
 
   xdg.portal = {
@@ -214,6 +214,7 @@
           bind = $mod, RETURN, exec, kitty
           bind = $mod, D, exec, wofi --show drun
           # Shortcuts
+          bind = $mod, Escape, exec, stay-awake-toggle
           bind = $mod, L, exec, hyprlock
           bind = $mod, H, exec, keyshelf
           bind = $mod, B, exec, brave
