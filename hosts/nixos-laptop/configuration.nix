@@ -11,6 +11,7 @@
     ./hardware-configuration.nix
 
     ../../modules/core/default.nix
+    ../../modules/hardware/tablet.nix
     ../../modules/networking/default.nix
     ../../modules/programs/common.nix
     ../../modules/programs/dev.nix
