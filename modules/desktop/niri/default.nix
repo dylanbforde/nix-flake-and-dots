@@ -274,7 +274,7 @@ in
               Mod+E { spawn "${pkgs.xfce.thunar}/bin/thunar"; }
               Mod+T { spawn "${pkgs.kitty}/bin/kitty" "-e" "${pkgs.btop}/bin/btop"; }
               Mod+M { spawn "${pkgs.spotify}/bin/spotify"; }
-              Mod+N { spawn "${pkgs.unstable.antigravity}/bin/antigravity"; }
+              Mod+N { spawn "${pkgs.unstable.antigravity-ide}/bin/antigravity-ide"; }
               Mod+Escape { spawn "stay-awake-toggle"; }
               Mod+L { spawn "${pkgs.swaylock}/bin/swaylock" "-f"; }
               Mod+H { spawn "keyshelf"; }

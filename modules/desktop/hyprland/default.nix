@@ -221,7 +221,7 @@
           bind = $mod, E, exec, thunar
           bind = $mod, T, exec, kitty -e btop
           bind = $mod, M, exec, spotify
-          bind = $mod, N, exec, antigravity
+          bind = $mod, N, exec, antigravity-ide
           bind = $mod, W, killactive,
           bind = $mod, Q, exit,
           bind = $mod, V, togglefloating,

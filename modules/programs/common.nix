@@ -76,7 +76,7 @@ let
 in
 {
   environment.systemPackages = with pkgs; [
-    unstable.antigravity
+    unstable.antigravity-ide
     unstable.nordvpn
     codexCli
     codexDesktop
@@ -156,7 +156,12 @@ in
   };
 
   # Gaming
-  programs.steam.enable = true;
+  programs.steam = {
+    enable = true;
+    localNetworkGameTransfers.openFirewall = true;
+    remotePlay.openFirewall = true;
+  };
+  programs.gamemode.enable = true;
 
   # CLI Tools config
   programs.direnv.enable = true;
