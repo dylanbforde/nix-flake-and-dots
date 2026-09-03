@@ -75,43 +75,46 @@ let
   };
 in
 {
-  environment.systemPackages = with pkgs; [
-    unstable.antigravity-ide
-    unstable.nordvpn
-    codexCli
-    codexDesktop
-    codexDesktopReopen
-    brave
-    git
-    xfce.thunar
-    xfce.thunar-archive-plugin
-    btop
-    spotify
-    fzf
-    zoxide
-    eza
-    ripgrep
-    fd
-    discord
-    vlc
-    pavucontrol
-    imv
-    zathura
-    yazi
-    unzip
-    jq
-    playerctl
-    obsidian
-    rclone
-    tmux
-  ];
+  environment.systemPackages =
+    (with pkgs; [
+      unstable.antigravity-ide
+      unstable.nordvpn
+      codexCli
+      brave
+      git
+      xfce.thunar
+      xfce.thunar-archive-plugin
+      btop
+      spotify
+      fzf
+      zoxide
+      eza
+      ripgrep
+      fd
+      discord
+      vlc
+      pavucontrol
+      imv
+      zathura
+      yazi
+      unzip
+      jq
+      playerctl
+      obsidian
+      rclone
+      tmux
+    ])
+    ++ lib.optionals (config.networking.hostName != "nixos-laptop") [
+      codexDesktop
+      codexDesktopReopen
+    ];
 
   # Thunar
   services.gvfs.enable = true;
   services.tumbler.enable = true;
   programs.thunar.enable = true;
 
-  home-manager.users.dylan = {
+  home-manager.users.dylan = lib.mkIf (config.networking.hostName != "nixos-laptop") {
     home.file.".local/share/applications/codex-desktop.desktop".text = ''
       [Desktop Entry]
       Name=Codex Desktop

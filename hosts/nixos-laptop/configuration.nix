@@ -13,8 +13,10 @@
     ../../modules/core/default.nix
     ../../modules/hardware/tablet.nix
     ../../modules/networking/default.nix
+    ../../modules/services/notes-sync.nix
     ../../modules/programs/common.nix
     ../../modules/programs/dev.nix
+    ../../modules/programs/handwritten-notes.nix
     ../../modules/programs/shell.nix
     ../../modules/security/default.nix
     ../../modules/programs/kitty/default.nix
@@ -28,6 +30,19 @@
 
   services.tlp.enable = true;
   services.thermald.enable = true;
+
+  home-manager.users.dylan = {
+    imports = [
+      inputs.codex-desktop-linux.homeManagerModules.default
+    ];
+
+    home.packages = [
+      pkgs.git-lfs
+      pkgs.zed-editor
+    ];
+
+    programs.codexDesktopLinux.enable = true;
+  };
 
   # Keep long-running local work reachable unless the user explicitly locks or
   # suspends the machine.
