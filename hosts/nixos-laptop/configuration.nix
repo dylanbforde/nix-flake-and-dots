@@ -31,19 +31,6 @@
   services.tlp.enable = true;
   services.thermald.enable = true;
 
-  home-manager.users.dylan = {
-    imports = [
-      inputs.codex-desktop-linux.homeManagerModules.default
-    ];
-
-    home.packages = [
-      pkgs.git-lfs
-      pkgs.zed-editor
-    ];
-
-    programs.codexDesktopLinux.enable = true;
-  };
-
   # Keep long-running local work reachable unless the user explicitly locks or
   # suspends the machine.
   home-manager.users.dylan.theme.screensaver = false;

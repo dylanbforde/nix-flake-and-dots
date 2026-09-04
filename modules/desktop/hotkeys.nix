@@ -91,6 +91,8 @@ let
     SUPER+T          System monitor
     SUPER+M          Spotify
     SUPER+N          Antigravity
+    SUPER+Shift+G    Steam
+    SUPER+Shift+D    Discord
     SUPER+L          Lock screen
     SUPER+C          Clipboard history (Niri)
     Print            Screenshot

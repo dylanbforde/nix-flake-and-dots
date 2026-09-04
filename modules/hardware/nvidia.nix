@@ -32,7 +32,8 @@
     nvidiaSettings = true;
 
     # Optionally, you may need to select the appropriate driver version for your specific GPU.
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
+    # GTX 1050 Ti (Pascal) uses the legacy 580 driver branch.
+    package = config.boot.kernelPackages.nvidiaPackages.legacy_580;
   };
 
   # Essential environment variables for Hyprland on NVIDIA hardware

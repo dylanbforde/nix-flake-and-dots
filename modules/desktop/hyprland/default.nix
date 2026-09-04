@@ -8,9 +8,6 @@
     xwayland.enable = true;
   };
 
-  # Allow screen lockers to authenticate correctly.
-  security.pam.services.swaylock = { };
-
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
   };
@@ -53,8 +50,13 @@
           wp = config.theme.wallpaper;
         in
         ''
-          preload = ${wp}
-          wallpaper = ,${wp}
+          ipc = on
+          splash = false
+          wallpaper {
+              monitor =
+              path = ${wp}
+              fit_mode = cover
+          }
         '';
 
       xdg.configFile."hypr/hypridle.conf".text =
@@ -221,12 +223,16 @@
           bind = $mod, E, exec, thunar
           bind = $mod, T, exec, kitty -e btop
           bind = $mod, M, exec, spotify
-          bind = $mod, N, exec, antigravity-ide
+          bind = $mod, N, exec, antigravity
+          bind = $mod SHIFT, N, exec, kitty -e agy
+          bind = $mod SHIFT, G, exec, steam
+          bind = $mod SHIFT, D, exec, discord
           bind = $mod, W, killactive,
+          bind = $mod SHIFT, Q, killactive,
           bind = $mod, Q, exit,
           bind = $mod, V, togglefloating,
           bind = $mod, P, pseudo,
-          bind = $mod, J, togglesplit,
+          bind = $mod, J, layoutmsg, togglesplit
           bind = $mod, F, fullscreen,
           bind = $mod, G, togglegroup
           bind = $mod, Tab, changegroupactive
@@ -234,8 +240,14 @@
           bind = $mod SHIFT, S, movetoworkspace, special:magic
 
           # Screenshots
-          bind = , Print, exec, hyprshot -m output
-          bind = $mod, Print, exec, hyprshot -m region
+          bind = , Print, exec, mkdir -p ~/Pictures/Screenshots && hyprshot -m output -o ~/Pictures/Screenshots
+          bind = $mod, Print, exec, mkdir -p ~/Pictures/Screenshots && hyprshot -m region -o ~/Pictures/Screenshots
+
+          # Mouse Binds
+          bindm = $mod, mouse:272, movewindow
+          bindm = $mod, mouse:273, resizewindow
+          bind = $mod, mouse_down, workspace, e+1
+          bind = $mod, mouse_up, workspace, e-1
 
           # Arrows
           bind = $mod, left, movefocus, l

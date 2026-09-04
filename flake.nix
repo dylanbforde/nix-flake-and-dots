@@ -2,7 +2,7 @@
   description = "NixOS Configurations";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     codex-cli-nix.url = "github:sadjow/codex-cli-nix";
     codex-desktop-linux = {
@@ -15,7 +15,7 @@
     };
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.11";
+      url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -40,7 +40,7 @@
         };
       overlay-unstable = final: prev: {
         unstable = import nixpkgs-unstable {
-          inherit (prev.stdenv.hostPlatform) system;
+          inherit (final.stdenv.hostPlatform) system;
           config.allowUnfree = true;
         };
       };
@@ -55,7 +55,7 @@
           name = "format-nixos-config";
           runtimeInputs = [
             pkgs.findutils
-            pkgs.nixfmt-rfc-style
+            pkgs.nixfmt
           ];
           text = ''
             find "$PWD" -path "$PWD/.git" -prune -o -name '*.nix' -print0 | xargs -0 nixfmt
@@ -77,7 +77,7 @@
               gitleaks
               nil
               nix-output-monitor
-              nixfmt-rfc-style
+              nixfmt
               nh
               ripgrep
               sops
@@ -100,7 +100,7 @@
           nixfmt =
             pkgs.runCommand "nixfmt-check"
               {
-                nativeBuildInputs = [ pkgs.nixfmt-rfc-style ];
+                nativeBuildInputs = [ pkgs.nixfmt ];
                 src = self;
               }
               ''
@@ -117,7 +117,7 @@
                 src = self;
               }
               ''
-                statix check --ignore 'hosts/*/hardware-configuration.nix' "$src"
+                cd "$src" && statix check --ignore '**/hardware-configuration.nix' .
                 touch "$out"
               '';
 

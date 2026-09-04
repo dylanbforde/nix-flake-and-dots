@@ -71,6 +71,10 @@
         nil = {
           command = "nil";
         };
+        ty = {
+          command = "ty";
+          args = [ "server" ];
+        };
       };
       language = [
         {

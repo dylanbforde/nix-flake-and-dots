@@ -75,46 +75,61 @@ let
   };
 in
 {
-  environment.systemPackages =
-    (with pkgs; [
-      unstable.antigravity-ide
-      unstable.nordvpn
-      codexCli
-      brave
-      git
-      xfce.thunar
-      xfce.thunar-archive-plugin
-      btop
-      spotify
-      fzf
-      zoxide
-      eza
-      ripgrep
-      fd
-      discord
-      vlc
-      pavucontrol
-      imv
-      zathura
-      yazi
-      unzip
-      jq
-      playerctl
-      obsidian
-      rclone
-      tmux
-    ])
-    ++ lib.optionals (config.networking.hostName != "nixos-laptop") [
-      codexDesktop
-      codexDesktopReopen
-    ];
+  environment.systemPackages = with pkgs; [
+    unstable.antigravity-ide
+    unstable.nordvpn
+    codexCli
+    codexDesktop
+    codexDesktopReopen
+    brave
+    git
+    git-lfs
+    zed-editor
+    thunar
+    thunar-archive-plugin
+    btop
+    spotify
+    fzf
+    zoxide
+    eza
+    ripgrep
+    fd
+    discord
+    vlc
+    pavucontrol
+    imv
+    zathura
+    yazi
+    unzip
+    jq
+    playerctl
+    obsidian
+    rclone
+    tmux
+  ];
 
   # Thunar
   services.gvfs.enable = true;
   services.tumbler.enable = true;
-  programs.thunar.enable = true;
+  programs = {
+    thunar.enable = true;
+    steam = {
+      enable = true;
+      protontricks.enable = true;
+      extraCompatPackages = [ pkgs.proton-ge-bin ];
+      localNetworkGameTransfers.openFirewall = true;
+      remotePlay.openFirewall = true;
+    };
+    gamemode.enable = true;
+    direnv = {
+      enable = true;
+      nix-direnv.enable = true;
+    };
+  };
 
-  home-manager.users.dylan = lib.mkIf (config.networking.hostName != "nixos-laptop") {
+  home-manager.users.dylan = {
+    imports = [ inputs.codex-desktop-linux.homeManagerModules.default ];
+    programs.codexDesktopLinux.enable = true;
     home.file.".local/share/applications/codex-desktop.desktop".text = ''
       [Desktop Entry]
       Name=Codex Desktop
@@ -158,15 +173,4 @@ in
     };
   };
 
-  # Gaming
-  programs.steam = {
-    enable = true;
-    localNetworkGameTransfers.openFirewall = true;
-    remotePlay.openFirewall = true;
-  };
-  programs.gamemode.enable = true;
-
-  # CLI Tools config
-  programs.direnv.enable = true;
-  programs.direnv.nix-direnv.enable = true;
 }

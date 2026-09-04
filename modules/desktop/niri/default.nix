@@ -271,10 +271,12 @@ in
               Mod+Return { spawn "${pkgs.kitty}/bin/kitty"; }
               Mod+D { spawn "${pkgs.wofi}/bin/wofi" "--show" "drun"; }
               Mod+B { spawn "${pkgs.brave}/bin/brave"; }
-              Mod+E { spawn "${pkgs.xfce.thunar}/bin/thunar"; }
+              Mod+E { spawn "${pkgs.thunar}/bin/thunar"; }
               Mod+T { spawn "${pkgs.kitty}/bin/kitty" "-e" "${pkgs.btop}/bin/btop"; }
               Mod+M { spawn "${pkgs.spotify}/bin/spotify"; }
               Mod+N { spawn "${pkgs.unstable.antigravity-ide}/bin/antigravity-ide"; }
+              Mod+Shift+G { spawn "${pkgs.steam}/bin/steam"; }
+              Mod+Shift+D { spawn "${pkgs.discord}/bin/discord"; }
               Mod+Escape { spawn "stay-awake-toggle"; }
               Mod+L { spawn "${pkgs.swaylock}/bin/swaylock" "-f"; }
               Mod+H { spawn "keyshelf"; }
