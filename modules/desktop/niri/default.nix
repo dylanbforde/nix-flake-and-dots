@@ -31,15 +31,15 @@ in
     defaultSession = lib.mkDefault "niri";
   };
 
-  programs.niri = {
-    enable = true;
-    useNautilus = false;
+  programs = {
+    niri = {
+      enable = true;
+      useNautilus = false;
+    };
+    # Keep a fallback session in Ly while stabilizing Niri.
+    hyprland.enable = true;
+    dconf.enable = true;
   };
-
-  # Keep a fallback session in Ly while stabilizing Niri.
-  programs.hyprland.enable = true;
-
-  programs.dconf.enable = true;
 
   # Let niri inherit the full environment imported by niri-session instead of a
   # stripped systemd default PATH.
@@ -271,10 +271,12 @@ in
               Mod+Return { spawn "${pkgs.kitty}/bin/kitty"; }
               Mod+D { spawn "${pkgs.wofi}/bin/wofi" "--show" "drun"; }
               Mod+B { spawn "${pkgs.brave}/bin/brave"; }
-              Mod+E { spawn "${pkgs.xfce.thunar}/bin/thunar"; }
+              Mod+E { spawn "${pkgs.thunar}/bin/thunar"; }
               Mod+T { spawn "${pkgs.kitty}/bin/kitty" "-e" "${pkgs.btop}/bin/btop"; }
               Mod+M { spawn "${pkgs.spotify}/bin/spotify"; }
               Mod+N { spawn "${pkgs.unstable.antigravity-ide}/bin/antigravity-ide"; }
+              Mod+Shift+G { spawn "${pkgs.steam}/bin/steam"; }
+              Mod+Shift+D { spawn "${pkgs.discord}/bin/discord"; }
               Mod+Escape { spawn "stay-awake-toggle"; }
               Mod+L { spawn "${pkgs.swaylock}/bin/swaylock" "-f"; }
               Mod+H { spawn "keyshelf"; }

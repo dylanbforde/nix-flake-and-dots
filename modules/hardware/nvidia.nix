@@ -31,8 +31,8 @@
     # Enable the Nvidia settings menu, accessible via `nvidia-settings`.
     nvidiaSettings = true;
 
-    # Optionally, you may need to select the appropriate driver version for your specific GPU.
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
+    # Use NVIDIA 580 legacy driver branch for GTX 1050 Ti (Pascal architecture).
+    package = config.boot.kernelPackages.nvidiaPackages.legacy_580;
   };
 
   # Essential environment variables for Hyprland on NVIDIA hardware

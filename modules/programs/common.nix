@@ -83,8 +83,8 @@ in
     codexDesktopReopen
     brave
     git
-    xfce.thunar
-    xfce.thunar-archive-plugin
+    thunar
+    thunar-archive-plugin
     btop
     spotify
     fzf
@@ -109,7 +109,24 @@ in
   # Thunar
   services.gvfs.enable = true;
   services.tumbler.enable = true;
-  programs.thunar.enable = true;
+  programs = {
+    thunar.enable = true;
+    # Gaming
+    steam = {
+      enable = true;
+      protontricks.enable = true;
+      extraCompatPackages = [ pkgs.proton-ge-bin ];
+      localNetworkGameTransfers.openFirewall = true;
+      remotePlay.openFirewall = true;
+    };
+    gamemode.enable = true;
+
+    # CLI Tools config
+    direnv = {
+      enable = true;
+      nix-direnv.enable = true;
+    };
+  };
 
   home-manager.users.dylan = {
     home.file.".local/share/applications/codex-desktop.desktop".text = ''
@@ -154,16 +171,4 @@ in
       RestartSec = "10s";
     };
   };
-
-  # Gaming
-  programs.steam = {
-    enable = true;
-    localNetworkGameTransfers.openFirewall = true;
-    remotePlay.openFirewall = true;
-  };
-  programs.gamemode.enable = true;
-
-  # CLI Tools config
-  programs.direnv.enable = true;
-  programs.direnv.nix-direnv.enable = true;
 }

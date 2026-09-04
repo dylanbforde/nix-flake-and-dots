@@ -22,12 +22,18 @@
     ../../modules/programs/fastfetch/default.nix
   ];
 
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.systemd-boot.configurationLimit = 10;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader = {
+    systemd-boot = {
+      enable = true;
+      configurationLimit = 10;
+    };
+    efi.canTouchEfiVariables = true;
+  };
 
-  services.tlp.enable = true;
-  services.thermald.enable = true;
+  services = {
+    tlp.enable = true;
+    thermald.enable = true;
+  };
 
   # Keep long-running local work reachable unless the user explicitly locks or
   # suspends the machine.

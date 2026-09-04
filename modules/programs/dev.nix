@@ -4,7 +4,6 @@
   environment.systemPackages = with pkgs; [
     helix
     distrobox
-    gemini-cli
     devenv
     uv
 
