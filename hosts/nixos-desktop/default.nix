@@ -14,6 +14,7 @@
 
     ../../modules/core/default.nix
     ../../modules/networking/default.nix
+    ../../modules/services/notes-sync.nix
     ../../modules/programs/common.nix
     ../../modules/programs/dev.nix
     ../../modules/programs/shell.nix

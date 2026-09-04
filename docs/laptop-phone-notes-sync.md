@@ -1,8 +1,9 @@
-# Laptop and phone notes sync
+# Laptop, phone, and desktop notes sync
 
 The canonical Obsidian vault is `/home/dylan/notes`. The laptop and Android
 phone synchronize that directory in both directions through Syncthing over
-Tailscale. Code repositories and the desktop are outside this rollout.
+Tailscale. The desktop is a receive-only replica and recovery target. Code
+repositories remain outside this rollout.
 
 ## Laptop preparation completed on 2026-08-31
 
@@ -70,6 +71,38 @@ ignored. The vault's 693 MiB `.git` directory remains local to the laptop.
 
 Keep the untouched safety copy until a later desktop replica or offline backup
 has been configured and tested.
+
+## Desktop replica bootstrap
+
+The desktop configuration enables the same Tailscale-only Syncthing service and
+creates these paths:
+
+```text
+/srv/syncthing/notes
+/srv/syncthing/.versions/notes
+```
+
+After turning on the desktop:
+
+1. Pull this repository and rebuild `nixos-desktop`.
+2. Run `sudo tailscale up --force-reauth --ssh` if the desktop's Tailscale key
+   has expired.
+3. Open `http://127.0.0.1:8384` on the desktop.
+4. Pair the desktop and laptop using their live device IDs and fixed Tailscale
+   hostnames. Leave **Introducer** and **Auto Accept** disabled.
+5. On the laptop, share `dylan-notes-v1` with the desktop.
+6. Accept the folder on the desktop with path `/srv/syncthing/notes` and folder
+   type **Receive Only**.
+7. Add the same ignore patterns used on the laptop, especially `.git`,
+   `.obsidian`, and `.trash`.
+8. Enable **Staggered File Versioning** on the desktop folder, set the versions
+   path to `/srv/syncthing/.versions/notes`, and retain versions for 365 days.
+9. Let the initial synchronization finish, then verify that `.git` is absent
+   and test recovery by deleting a disposable note from the phone.
+
+The desktop is a replica, not another authoring peer. Do not use **Override
+Changes** during normal operation; that action would intentionally push local
+desktop contents back toward the laptop and phone.
 
 ## Handwritten notes
 
